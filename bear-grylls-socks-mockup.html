@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bear Grylls Socks — Built for Wherever the Trail Ends</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine: #16302A;
+    --pine-deep: #0E211D;
+    --rust: #C1451B;
+    --rust-bright: #E15A25;
+    --stone: #DDD2B9;
+    --paper: #F6F1E4;
+    --charcoal: #191510;
+    --ink: #241E17;
+    --line: rgba(25,21,16,0.14);
+    --gold: #C99A3D;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    font-weight:600;
+    line-height:1.05;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  /* topo texture */
+  .topo{
+    background-image:
+      repeating-radial-gradient(circle at 20% 30%, transparent 0, transparent 38px, rgba(255,255,255,0.035) 39px, transparent 40px),
+      repeating-radial-gradient(circle at 80% 70%, transparent 0, transparent 52px, rgba(255,255,255,0.03) 53px, transparent 54px);
+  }
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--pine-deep);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    color:var(--paper);
+  }
+  .logo .mark{
+    width:34px;height:34px;border:2px solid var(--rust-bright);
+    border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:'Oswald',sans-serif;font-weight:700;font-size:15px;color:var(--rust-bright);
+  }
+  .logo .word{font-family:'Oswald',sans-serif;font-weight:600;font-size:17px;letter-spacing:0.06em;text-transform:uppercase;}
+  .logo .word span{color:var(--rust-bright);}
+  nav ul{display:flex;gap:34px;list-style:none;}
+  nav ul li a{
+    color:rgba(246,241,228,0.72);
+    font-size:13px; letter-spacing:0.08em; text-transform:uppercase; font-weight:500;
+    transition:color .2s;
+  }
+  nav ul li a:hover{color:var(--paper);}
+  .nav-cta{
+    background:var(--rust); color:var(--paper);
+    padding:11px 22px; border-radius:2px;
+    font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600;
+    border:1px solid var(--rust);
+    transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--rust-bright);}
+  .nav-links-mobile{display:none;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:88vh;
+    display:flex; align-items:flex-end;
+    background:#0c1a16;
+    overflow:hidden;
+  }
+  .hero img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    opacity:0.6;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(14,33,29,0.35) 0%, rgba(14,33,29,0.55) 45%, rgba(10,20,17,0.96) 100%);
+  }
+  .hero-inner{
+    position:relative; z-index:2;
+    padding:0 32px 72px;
+    width:100%;
+  }
+  .hero-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(246,241,228,0.1);
+    border:1px solid rgba(246,241,228,0.35);
+    color:var(--paper);
+    padding:7px 14px; border-radius:2px;
+    font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase; font-weight:500;
+    margin-bottom:22px;
+    backdrop-filter:blur(2px);
+  }
+  .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--rust-bright);}
+  .hero h1{
+    color:var(--paper);
+    font-size:clamp(42px, 6.2vw, 92px);
+    max-width:820px;
+    margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal;color:var(--gold);}
+  .hero p.lead{
+    color:rgba(246,241,228,0.78);
+    font-size:18px; max-width:480px; line-height:1.6;
+    margin-bottom:34px;
+    font-weight:400;
+  }
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap; align-items:center;}
+  .btn-primary{
+    background:var(--rust); color:var(--paper);
+    padding:16px 30px; border-radius:2px;
+    font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; font-size:14px;
+    border:1px solid var(--rust);
+    transition:transform .15s, background .2s;
+    display:inline-block;
+  }
+  .btn-primary:hover{background:var(--rust-bright); transform:translateY(-1px);}
+  .btn-ghost{
+    color:var(--paper);
+    padding:16px 8px;
+    font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; font-size:14px;
+    border-bottom:1px solid rgba(246,241,228,0.4);
+    display:inline-flex; align-items:center; gap:8px;
+  }
+
+  /* TRUST STRIP */
+  .trust{
+    background:var(--charcoal);
+    padding:20px 0;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .trust .wrap{
+    display:flex; align-items:center; justify-content:center; gap:56px;
+    flex-wrap:wrap;
+  }
+  .trust-item{
+    color:rgba(246,241,228,0.55);
+    font-size:12px; letter-spacing:0.12em; text-transform:uppercase; font-weight:500;
+    display:flex; align-items:center; gap:10px;
+  }
+  .trust-item b{color:var(--paper); font-weight:600;}
+
+  /* SECTION HEADERS */
+  .section{padding:108px 0;}
+  .section.tight{padding:88px 0;}
+  .eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--rust); font-weight:700;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:'';width:22px;height:2px;background:var(--rust);}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head h2{font-size:clamp(30px,3.6vw,46px); margin-bottom:16px;}
+  .section-head p{font-size:16.5px; color:rgba(36,30,23,0.68); line-height:1.65; font-weight:400;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+
+  /* PRODUCTS */
+  .products-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:28px;
+  }
+  .product-card{
+    background:var(--pine);
+    border-radius:4px;
+    overflow:hidden;
+    color:var(--paper);
+    display:flex; flex-direction:column;
+    position:relative;
+  }
+  .product-card .tag{
+    position:absolute; top:18px; left:18px; z-index:3;
+    background:var(--rust); color:var(--paper);
+    font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700;
+    letter-spacing:0.06em; text-transform:uppercase;
+    padding:5px 10px; border-radius:2px;
+  }
+  .product-media{
+    position:relative; height:230px; overflow:hidden;
+    background:var(--pine-deep);
+  }
+  .product-media img{width:100%;height:100%;object-fit:cover; opacity:0.82; transition:transform .5s;}
+  .product-card:hover .product-media img{transform:scale(1.06);}
+  .product-media::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 40%, rgba(14,33,29,0.85) 100%);
+  }
+  .product-body{padding:26px 26px 30px;}
+  .product-body h3{font-size:22px; margin-bottom:8px; color:var(--paper);}
+  .product-body p{font-size:14.5px; color:rgba(246,241,228,0.66); line-height:1.6; margin-bottom:20px;}
+  .product-specs{
+    display:flex; gap:16px; margin-bottom:22px; flex-wrap:wrap;
+  }
+  .product-specs span{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.04em;
+    color:var(--gold); text-transform:uppercase;
+    border:1px solid rgba(201,154,61,0.35); padding:5px 9px; border-radius:2px;
+  }
+  .product-foot{
+    display:flex; align-items:center; justify-content:space-between;
+    border-top:1px solid rgba(246,241,228,0.12);
+    padding-top:18px;
+  }
+  .product-foot .price{font-family:'Oswald',sans-serif; font-size:19px; font-weight:600;}
+  .product-foot a{
+    font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600;
+    color:var(--rust-bright); border-bottom:1px solid var(--rust-bright); padding-bottom:2px;
+  }
+
+  /* PACK TAGS */
+  .packs{background:var(--stone);}
+  .pack-row{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:26px;
+  }
+  .pack-tag{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:30px 26px;
+    position:relative;
+    transition:border-color .2s, transform .2s;
+  }
+  .pack-tag.featured{
+    background:var(--charcoal); color:var(--paper); border-color:var(--charcoal);
+    transform:translateY(-10px);
+  }
+  .pack-tag::before{
+    content:'';
+    position:absolute; top:24px; right:24px;
+    width:12px; height:12px; border:2px solid var(--rust);
+    border-radius:50%;
+  }
+  .pack-tag.featured::before{border-color:var(--gold);}
+  .pack-label{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:14px;
+  }
+  .pack-tag.featured .pack-label{color:var(--gold);}
+  .pack-tag h3{font-size:38px; margin-bottom:6px;}
+  .pack-tag .pack-desc{font-size:13.5px; opacity:0.65; margin-bottom:24px; line-height:1.5;}
+  .pack-tag .pack-price{font-family:'Oswald',sans-serif; font-size:22px; font-weight:600; margin-bottom:4px;}
+  .pack-tag .pack-unit{font-size:12px; opacity:0.55; margin-bottom:22px;}
+  .pack-perks{list-style:none; margin-bottom:26px;}
+  .pack-perks li{
+    font-size:13.5px; padding:7px 0; border-top:1px solid var(--line);
+    display:flex; gap:9px; align-items:flex-start;
+  }
+  .pack-tag.featured .pack-perks li{border-top-color:rgba(246,241,228,0.14);}
+  .pack-perks li:first-child{border-top:none;}
+  .pack-perks li::before{content:'—'; color:var(--rust); font-weight:700; flex-shrink:0;}
+  .pack-tag.featured .pack-perks li::before{color:var(--gold);}
+  .pack-btn{
+    display:block; text-align:center;
+    border:1px solid var(--charcoal); color:var(--charcoal);
+    padding:13px; border-radius:2px;
+    font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; font-size:13px;
+  }
+  .pack-tag.featured .pack-btn{background:var(--rust); border-color:var(--rust); color:var(--paper);}
+
+  /* RESUPPLY / SUBSCRIPTION */
+  .resupply{
+    background:var(--pine-deep);
+    color:var(--paper);
+    position:relative; overflow:hidden;
+  }
+  .resupply-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:center;
+  }
+  .resupply-copy .eyebrow{color:var(--gold);}
+  .resupply-copy .eyebrow::before{background:var(--gold);}
+  .resupply-copy h2{font-size:clamp(30px,3.4vw,42px); margin-bottom:18px; color:var(--paper);}
+  .resupply-copy p{color:rgba(246,241,228,0.68); font-size:16px; line-height:1.7; margin-bottom:30px; max-width:480px;}
+  .resupply-stats{display:flex; gap:40px; margin-bottom:34px;}
+  .resupply-stats div b{
+    display:block; font-family:'Oswald',sans-serif; font-size:30px; font-weight:600; color:var(--gold);
+  }
+  .resupply-stats div span{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:rgba(246,241,228,0.55);}
+  .resupply-card{
+    background:rgba(246,241,228,0.05);
+    border:1px solid rgba(246,241,228,0.14);
+    border-radius:4px; padding:36px;
+  }
+  .resupply-card .freq{
+    display:flex; gap:10px; margin-bottom:26px;
+  }
+  .freq-opt{
+    flex:1; text-align:center; padding:10px 6px;
+    border:1px solid rgba(246,241,228,0.2); border-radius:2px;
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.04em; text-transform:uppercase;
+    color:rgba(246,241,228,0.6);
+  }
+  .freq-opt.active{background:var(--rust); border-color:var(--rust); color:var(--paper); font-weight:700;}
+  .resupply-card .line-item{
+    display:flex; justify-content:space-between; padding:12px 0;
+    border-top:1px solid rgba(246,241,228,0.1); font-size:14px;
+  }
+  .resupply-card .line-item:first-of-type{border-top:none;}
+  .resupply-card .save{color:var(--gold); font-weight:600;}
+  .resupply-card .pack-btn{margin-top:22px; border-color:rgba(246,241,228,0.5); color:var(--paper);}
+  .resupply-card .pack-btn:hover{background:rgba(246,241,228,0.08);}
+
+  /* TECH / WHY */
+  .tech-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .tech-item{background:var(--paper); padding:34px 26px;}
+  .tech-item .num{font-family:'JetBrains Mono',monospace; color:var(--rust); font-size:12px; font-weight:700; margin-bottom:16px;}
+  .tech-item h3{font-size:17px; margin-bottom:10px; letter-spacing:0.01em;}
+  .tech-item p{font-size:13.5px; color:rgba(36,30,23,0.62); line-height:1.6;}
+
+  /* TESTIMONIAL STRIP */
+  .field{
+    background:var(--rust);
+    color:var(--paper);
+    padding:70px 0;
+  }
+  .field .wrap{display:grid; grid-template-columns:repeat(3,1fr); gap:40px;}
+  .field-quote p{font-size:15.5px; line-height:1.65; margin-bottom:18px; color:rgba(246,241,228,0.92);}
+  .field-quote .who{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; opacity:0.8;}
+
+  /* WHOLESALE / DISTRIBUTOR STRIP */
+  .wholesale{
+    background:var(--charcoal); color:var(--paper);
+  }
+  .wholesale .wrap{
+    display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;
+    padding-top:70px; padding-bottom:70px;
+  }
+  .wholesale h2{font-size:clamp(26px,3vw,36px); max-width:520px;}
+  .wholesale p{color:rgba(246,241,228,0.6); margin-top:12px; font-size:15px; max-width:480px;}
+  .wholesale-cta{display:flex; gap:14px; flex-wrap:wrap;}
+
+  /* FOOTER */
+  footer{background:var(--pine-deep); color:rgba(246,241,228,0.55); padding:56px 0 28px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px;}
+  .foot-grid h4{color:var(--paper); font-size:12.5px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:16px; font-weight:600;}
+  .foot-grid ul{list-style:none;}
+  .foot-grid ul li{margin-bottom:10px; font-size:13.5px;}
+  .foot-grid ul li a:hover{color:var(--paper);}
+  .foot-bottom{
+    border-top:1px solid rgba(246,241,228,0.1); padding-top:24px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:12px;
+  }
+  .foot-note{max-width:620px; font-size:12px; line-height:1.6; opacity:0.7; margin-top:10px;}
+
+  @media (max-width: 880px){
+    nav ul{display:none;}
+    .products-grid{grid-template-columns:1fr;}
+    .pack-row{grid-template-columns:1fr;}
+    .pack-tag.featured{transform:none;}
+    .resupply-grid{grid-template-columns:1fr;}
+    .tech-grid{grid-template-columns:1fr 1fr;}
+    .field .wrap{grid-template-columns:1fr; gap:30px;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#" class="logo">
+      <div class="mark">BG</div>
+      <div class="word">Bear Grylls <span>Socks</span></div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#products">The Range</a></li>
+        <li><a href="#packs">Pack Sizes</a></li>
+        <li><a href="#resupply">Resupply Plan</a></li>
+        <li><a href="#wholesale">Wholesale</a></li>
+      </ul>
+    </nav>
+    <a href="#packs" class="nav-cta">Shop Packs</a>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1760715651666-c3e408bfdda7?fm=jpg&q=80&w=2400&auto=format&fit=crop" alt="Hiker with backpack on a mountain trail">
+  <div class="hero-inner wrap">
+    <div class="hero-badge"><span class="dot"></span> Officially Licensed &nbsp;·&nbsp; As Seen On TV</div>
+    <h1>Built for wherever <em>the trail ends.</em></h1>
+    <p class="lead">Performance socks engineered under the Bear Grylls license — tested against cold rivers, dead legs, and third-day blisters, so yours don't have to be.</p>
+    <div class="hero-ctas">
+      <a href="#packs" class="btn-primary">Shop the Range</a>
+      <a href="#resupply" class="btn-ghost">See the Resupply Plan →</a>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div class="trust-item"><b>Officially Licensed</b> Bear Grylls Brand</div>
+    <div class="trust-item"><b>50,000+</b> Pairs Shipped</div>
+    <div class="trust-item"><b>Free</b> Resupply Shipping</div>
+    <div class="trust-item"><b>4.8/5</b> Field Rating</div>
+  </div>
+</div>
+
+<section class="section" id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The Range</div>
+      <h2>Three socks. One standard: don't quit on you.</h2>
+      <p>Every pair is built and tested to the same expedition brief — no matter which terrain, temperature, or twelve-hour shift it's up against.</p>
+    </div>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="tag">Best Seller</div>
+        <div class="product-media">
+          <img src="https://images.unsplash.com/photo-1733744237781-6eed02c60b8a?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Hiking boots on a rocky trail">
+        </div>
+        <div class="product-body">
+          <h3>The Trailblazer</h3>
+          <p>Merino-blend hiking sock with reinforced heel and toe for multi-day treks and everyday miles.</p>
+          <div class="product-specs">
+            <span>Merino Blend</span>
+            <span>Cushioned Sole</span>
+          </div>
+          <div class="product-foot">
+            <span class="price">£14</span>
+            <a href="#packs">View Packs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="tag">All-Weather</div>
+        <div class="product-media">
+          <img src="https://images.unsplash.com/photo-1695564395219-86b6fdfa59f7?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Forest trail in wet weather">
+        </div>
+        <div class="product-body">
+          <h3>The Storm Guard</h3>
+          <p>Waterproof-membrane sock built for river crossings, sleet, and anything the forecast gets wrong.</p>
+          <div class="product-specs">
+            <span>Waterproof</span>
+            <span>Windproof</span>
+          </div>
+          <div class="product-foot">
+            <span class="price">£19</span>
+            <a href="#packs">View Packs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="tag">Everyday</div>
+        <div class="product-media">
+          <img src="https://images.unsplash.com/photo-1641399122809-e3c85958eb67?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Person wearing wool socks">
+        </div>
+        <div class="product-body">
+          <h3>The Basecamp</h3>
+          <p>Off-duty comfort sock for camp, couch, and everywhere in between — same durability, softer hand.</p>
+          <div class="product-specs">
+            <span>Brushed Cotton</span>
+            <span>Everyday Fit</span>
+          </div>
+          <div class="product-foot">
+            <span class="price">£12</span>
+            <a href="#packs">View Packs</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section packs" id="packs">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center;">Pack Sizes</div>
+      <h2>Stock the drawer, not just the trip.</h2>
+      <p>Mix and match across the range. Bigger packs, bigger margin on cost-per-pair — built for households and expedition kits alike.</p>
+    </div>
+    <div class="pack-row">
+
+      <div class="pack-tag">
+        <div class="pack-label">Trail Pack</div>
+        <h3>2-Pack</h3>
+        <div class="pack-desc">Try the range or top up a favourite pair.</div>
+        <div class="pack-price">£24</div>
+        <div class="pack-unit">£12.00 / pair</div>
+        <ul class="pack-perks">
+          <li>Any 2 styles, mix or match</li>
+          <li>Free standard shipping</li>
+          <li>30-day fit guarantee</li>
+        </ul>
+        <a href="#" class="pack-btn">Add to Cart</a>
+      </div>
+
+      <div class="pack-tag featured">
+        <div class="pack-label">Expedition Pack</div>
+        <h3>4-Pack</h3>
+        <div class="pack-desc">The most-picked size — one for every day worn hard.</div>
+        <div class="pack-price">£42</div>
+        <div class="pack-unit">£10.50 / pair · save 12%</div>
+        <ul class="pack-perks">
+          <li>Any 4 styles, mix or match</li>
+          <li>Free priority shipping</li>
+          <li>30-day fit guarantee</li>
+          <li>Exclusive expedition colourway</li>
+        </ul>
+        <a href="#" class="pack-btn">Add to Cart</a>
+      </div>
+
+      <div class="pack-tag">
+        <div class="pack-label">Basecamp Case</div>
+        <h3>12-Pack</h3>
+        <div class="pack-desc">A full season, sorted. Built for gifting and bulk restock.</div>
+        <div class="pack-price">£108</div>
+        <div class="pack-unit">£9.00 / pair · save 25%</div>
+        <ul class="pack-perks">
+          <li>Any 12 styles, mix or match</li>
+          <li>Free priority shipping</li>
+          <li>30-day fit guarantee</li>
+          <li>Gift-ready gear box</li>
+        </ul>
+        <a href="#" class="pack-btn">Add to Cart</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="resupply topo" id="resupply">
+  <div class="wrap section">
+    <div class="resupply-grid">
+      <div class="resupply-copy">
+        <div class="eyebrow">Resupply Plan</div>
+        <h2>Never dig through the drawer for a matching pair again.</h2>
+        <p>Subscribe once. We resupply your kit on a schedule you set — with first pick of new colourways and a standing discount on every drop.</p>
+        <div class="resupply-stats">
+          <div><b>20%</b><span>Off every order</span></div>
+          <div><b>Free</b><span>Shipping, always</span></div>
+          <div><b>Skip</b><span>Or cancel anytime</span></div>
+        </div>
+        <a href="#" class="btn-primary">Start the Resupply Plan</a>
+      </div>
+      <div class="resupply-card">
+        <div class="freq">
+          <div class="freq-opt">Monthly</div>
+          <div class="freq-opt active">Quarterly</div>
+          <div class="freq-opt">Bi-Annual</div>
+        </div>
+        <div class="line-item"><span>4-Pack · Mixed Range</span><span>£42.00</span></div>
+        <div class="line-item"><span>Subscriber discount</span><span class="save">−£8.40</span></div>
+        <div class="line-item"><span>Shipping</span><span class="save">Free</span></div>
+        <div class="line-item" style="font-weight:700; border-top:1px solid rgba(246,241,228,0.2); margin-top:6px; padding-top:16px;"><span>Billed quarterly</span><span>£33.60</span></div>
+        <a href="#" class="pack-btn">Set Up Resupply</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section tight">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Why It Holds Up</div>
+      <h2>Field-tested details, not marketing details.</h2>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="tech-grid">
+      <div class="tech-item">
+        <div class="num">01</div>
+        <h3>Reinforced Heel & Toe</h3>
+        <p>Double-layered where boots wear through socks first — built to outlast the boot break-in, not just survive it.</p>
+      </div>
+      <div class="tech-item">
+        <div class="num">02</div>
+        <h3>Moisture-Wicking Core</h3>
+        <p>Merino and technical fibres pull sweat away from skin, cutting blister risk on long, wet days.</p>
+      </div>
+      <div class="tech-item">
+        <div class="num">03</div>
+        <h3>Zoned Compression</h3>
+        <p>Targeted arch support keeps the fit locked in from the first mile to the last descent.</p>
+      </div>
+      <div class="tech-item">
+        <div class="num">04</div>
+        <h3>Seamless Toe Closure</h3>
+        <p>No ridge, no rub. One less thing to think about when the terrain is already asking enough of you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="field">
+  <div class="wrap">
+    <div class="field-quote">
+      <p>"Ordered the 12-pack before a Kilimanjaro trip. Only pair I didn't have to think about once I was up there."</p>
+      <div class="who">— J. Abara, Verified Buyer</div>
+    </div>
+    <div class="field-quote">
+      <p>"The Storm Guard pair got me through a river crossing in Snowdonia and my feet were genuinely dry after. Wasn't expecting that."</p>
+      <div class="who">— R. Doyle, Verified Buyer</div>
+    </div>
+    <div class="field-quote">
+      <p>"Switched the whole family onto the Resupply Plan. Fewer odd socks in the wash, which is honestly the real win."</p>
+      <div class="who">— M. Okafor, Verified Buyer</div>
+    </div>
+  </div>
+</section>
+
+<section class="wholesale" id="wholesale">
+  <div class="wrap">
+    <div>
+      <h2>Built for retail. Ready for wholesale.</h2>
+      <p>Licensed product, proven demand, and pack architecture designed for shelf and case-pack economics. Distributor decks and sample kits available on request.</p>
+    </div>
+    <div class="wholesale-cta">
+      <a href="#" class="btn-primary">Request Distributor Pack</a>
+      <a href="#" class="btn-ghost">Download Line Sheet →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;">
+          <div class="mark">BG</div>
+          <div class="word">Bear Grylls <span>Socks</span></div>
+        </div>
+        <p style="font-size:13px; line-height:1.6; max-width:280px;">Officially licensed performance footwear, built to the same standard as everything else Bear Grylls puts his name to.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#products">The Range</a></li>
+          <li><a href="#packs">Pack Sizes</a></li>
+          <li><a href="#resupply">Resupply Plan</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Business</h4>
+        <ul>
+          <li><a href="#wholesale">Wholesale</a></li>
+          <li><a href="#">Distributors</a></li>
+          <li><a href="#">Press Kit</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About the License</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Shipping & Returns</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Bear Grylls Socks. All rights reserved.</span>
+      <span>beargryllssocks.com — domain TBD</span>
+    </div>
+    <p class="foot-note">Concept mockup for pitch purposes only. Product photography, licensed imagery, and final branding to be supplied under the executed licensing agreement.</p>
+  </div>
+</footer>
+
+</body>
+</html>
