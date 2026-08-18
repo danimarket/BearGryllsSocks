@@ -335,6 +335,92 @@
   .tech-item h3{font-size:17px; margin-bottom:10px; letter-spacing:0.01em;}
   .tech-item p{font-size:13.5px; color:rgba(36,30,23,0.62); line-height:1.6;}
 
+  /* ANATOMY / SPEC SHEET */
+  .anatomy{
+    position:relative;
+    background:#0B0B0C;
+    color:#EDEAE4;
+    padding:100px 0 76px;
+    overflow:hidden;
+  }
+  .anatomy-bg{
+    position:absolute; inset:0; z-index:0;
+  }
+  .anatomy-bg img{
+    width:100%; height:100%; object-fit:cover; opacity:0.5;
+  }
+  .anatomy-bg::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(11,11,12,0.55) 0%, rgba(11,11,12,0.88) 55%, #0B0B0C 100%);
+  }
+  .anatomy > .wrap{position:relative; z-index:2;}
+  .anatomy-top{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    margin-bottom:64px; flex-wrap:wrap; gap:20px;
+  }
+  .anatomy-top .eyebrow{color:var(--spec-orange);}
+  .anatomy-top .eyebrow::before{background:var(--spec-orange);}
+  .anatomy-top h2{color:#fff; font-size:clamp(30px,3.6vw,46px); max-width:520px;}
+  .anatomy-top p{color:rgba(237,234,228,0.55); font-size:15px; max-width:320px; line-height:1.6;}
+  :root{ --spec-orange:#F0630F; --spec-orange-bright:#FF7C2E; }
+
+  .anatomy-grid{
+    display:grid; grid-template-columns:1fr 1.1fr auto;
+    gap:20px; align-items:center;
+  }
+  .anatomy-col{display:flex; flex-direction:column; gap:38px;}
+  .anatomy-item{display:flex; align-items:flex-start; gap:14px; max-width:250px;}
+  .anatomy-icon{
+    flex-shrink:0; width:44px; height:44px; border-radius:50%;
+    border:1.5px solid rgba(237,234,228,0.3);
+    background:rgba(11,11,12,0.55);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .anatomy-icon svg{width:20px; height:20px; stroke:var(--spec-orange-bright); fill:none; stroke-width:1.6;}
+  .anatomy-copy h4{
+    font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:13.5px; letter-spacing:0.03em; margin-bottom:6px; color:#fff;
+  }
+  .anatomy-copy p{font-size:12.5px; line-height:1.55; color:rgba(237,234,228,0.6);}
+  .anatomy-leader{flex-shrink:0; width:30px; height:1px; background:rgba(240,99,15,0.55); margin-top:22px;}
+
+  .anatomy-sock{position:relative; display:flex; justify-content:center;}
+  .anatomy-sock img{width:100%; max-width:300px; height:auto; border-radius:6px; filter:drop-shadow(0 30px 40px rgba(0,0,0,0.55));}
+
+  /* floating badges pinned beside the sock */
+  .anatomy-badges{position:relative; width:230px;}
+  .badge{
+    position:absolute;
+    display:flex; align-items:center; gap:10px;
+    max-width:210px;
+  }
+  .badge .anatomy-leader{width:26px; background:rgba(240,99,15,0.55);}
+  .badge-1{top:36%; left:0;}
+  .badge-2{top:56%; left:14px;}
+  .badge-3{top:76%; left:0;}
+
+  .anatomy-strip{
+    margin-top:80px; padding-top:36px;
+    border-top:1px solid rgba(237,234,228,0.14);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;
+  }
+  .strip-item{display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; min-width:110px;}
+  .strip-item svg{width:26px; height:26px; stroke:rgba(237,234,228,0.75); fill:none; stroke-width:1.5;}
+  .strip-item span{
+    font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:rgba(237,234,228,0.65); text-align:center; font-weight:500;
+  }
+
+  @media (max-width: 900px){
+    .anatomy-grid{grid-template-columns:1fr; justify-items:center;}
+    .anatomy-col{flex-direction:row; flex-wrap:wrap; gap:24px; justify-content:center;}
+    .anatomy-item{max-width:100%;}
+    .anatomy-sock{order:-1; margin-bottom:8px;}
+    .anatomy-badges{width:100%; max-width:340px; position:static; display:flex; flex-direction:column; gap:20px;}
+    .badge{position:static; max-width:100%;}
+  }
+
+
   /* TESTIMONIAL STRIP */
   .field{
     background:var(--rust);
@@ -495,6 +581,122 @@
   </div>
 </section>
 
+<section class="anatomy">
+  <div class="wrap">
+    <div class="anatomy-top">
+      <div>
+        <div class="eyebrow">Anatomy Of The Sock</div>
+        <h2>Built for the extreme, detail by detail.</h2>
+      </div>
+      <p>Engineered to a technical spec, not just a look — every zone on the sock is doing a specific job.</p>
+    </div>
+
+    <div class="anatomy-grid">
+      <!-- LEFT COLUMN -->
+      <div class="anatomy-col left">
+        <div class="anatomy-item">
+          <div class="anatomy-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 19l6-10 4 6 3-4 5 8H3z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          </div>
+          <div class="anatomy-copy">
+            <h4>Merino Wool Performance</h4>
+            <p>Temperature-regulating, moisture-wicking and naturally odour-resistant.</p>
+          </div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 8c2 2 4-2 6 0s4-2 6 0 4-2 6 0M3 14c2 2 4-2 6 0s4-2 6 0 4-2 6 0" stroke-linecap="round"/></svg>
+          </div>
+          <div class="anatomy-copy">
+            <h4>Ventilation Zones</h4>
+            <p>Strategic breathability for comfort on long treks and climbs.</p>
+          </div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="anatomy-copy">
+            <h4>Targeted Cushioning</h4>
+            <p>Advanced protection in high-impact zones for all-day comfort.</p>
+          </div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-icon">
+            <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3.2" stroke-linecap="round"/><circle cx="16" cy="16" r="3.2" stroke-linecap="round"/><path d="M10.3 10.3l3.4 3.4" stroke-linecap="round"/></svg>
+          </div>
+          <div class="anatomy-copy">
+            <h4>Reinforced Durability</h4>
+            <p>Built to withstand rugged terrain, heavy loads and extreme conditions.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CENTER SOCK IMAGE -->
+      <div class="anatomy-sock">
+        <img src="sock-hero.jpg" alt="Bear Grylls technical performance sock concept">
+      </div>
+
+      <!-- RIGHT: BADGES PINNED BESIDE THE SOCK -->
+      <div class="anatomy-badges">
+        <div class="badge badge-1">
+          <span class="anatomy-leader"></span>
+          <div class="anatomy-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" stroke-linecap="round"/><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" opacity="0.5"/></svg>
+          </div>
+          <div class="anatomy-copy">
+            <h4>Arch Support</h4>
+            <p>Stability where you need it most.</p>
+          </div>
+        </div>
+        <div class="badge badge-2">
+          <span class="anatomy-leader"></span>
+          <div class="anatomy-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 4c3 3 7 7.5 7 12a7 7 0 01-14 0c0-4.5 4-9 7-12z" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="anatomy-copy">
+            <h4>Anti-Blister Design</h4>
+            <p>Seamless fit to reduce friction.</p>
+          </div>
+        </div>
+        <div class="badge badge-3">
+          <span class="anatomy-leader"></span>
+          <div class="anatomy-icon">
+            <svg viewBox="0 0 24 24"><rect x="10" y="4" width="4" height="16" rx="1"/><rect x="4" y="10" width="16" height="4" rx="1"/></svg>
+          </div>
+          <div class="anatomy-copy">
+            <h4>Precision Engineered</h4>
+            <p>Premium materials, peak performance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="anatomy-strip">
+      <div class="strip-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2v12M9 20a3 3 0 006 0c0-1.5-1-2-1-2V4a2 2 0 00-4 0v14s-1 .5-1 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Thermal Regulation</span>
+      </div>
+      <div class="strip-item">
+        <svg viewBox="0 0 24 24"><path d="M12 3c3 4 7 8.5 7 12.5a7 7 0 01-14 0C5 11.5 9 7 12 3z" stroke-linejoin="round"/></svg>
+        <span>Moisture Management</span>
+      </div>
+      <div class="strip-item">
+        <svg viewBox="0 0 24 24"><path d="M4 20c8 0 14-6 14-14V4h-2C8 4 4 10 4 18v2z" stroke-linejoin="round"/></svg>
+        <span>Natural Comfort</span>
+      </div>
+      <div class="strip-item">
+        <svg viewBox="0 0 24 24"><circle cx="8" cy="12" r="5.5" stroke-linecap="round"/><circle cx="16" cy="12" r="5.5" stroke-linecap="round"/></svg>
+        <span>Built To Endure</span>
+      </div>
+      <div class="strip-item">
+        <svg viewBox="0 0 24 24"><path d="M2 19l6-11 4 7 3-5 7 9H2z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        <span>Tested In The Wild</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section packs" id="packs">
   <div class="wrap">
     <div class="section-head center">
@@ -582,38 +784,6 @@
   </div>
 </section>
 
-<section class="section tight">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Why It Holds Up</div>
-      <h2>Field-tested details, not marketing details.</h2>
-    </div>
-  </div>
-  <div class="wrap">
-    <div class="tech-grid">
-      <div class="tech-item">
-        <div class="num">01</div>
-        <h3>Reinforced Heel & Toe</h3>
-        <p>Double-layered where boots wear through socks first — built to outlast the boot break-in, not just survive it.</p>
-      </div>
-      <div class="tech-item">
-        <div class="num">02</div>
-        <h3>Moisture-Wicking Core</h3>
-        <p>Merino and technical fibres pull sweat away from skin, cutting blister risk on long, wet days.</p>
-      </div>
-      <div class="tech-item">
-        <div class="num">03</div>
-        <h3>Zoned Compression</h3>
-        <p>Targeted arch support keeps the fit locked in from the first mile to the last descent.</p>
-      </div>
-      <div class="tech-item">
-        <div class="num">04</div>
-        <h3>Seamless Toe Closure</h3>
-        <p>No ridge, no rub. One less thing to think about when the terrain is already asking enough of you.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="field">
   <div class="wrap">
