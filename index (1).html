@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modern Savage Socks | Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bone:#f6f3ea; --bone-2:#ece7da; --ink:#171a12; --muted:#6c705f; --line:#dcd6c5;
+  --olive:#56633a; --olive-dark:#434e2d; --olive-soft:#e4e8d6; --white:#fff;
+  --display:'Barlow Condensed','Arial Narrow',Impact,sans-serif; --sans:'Barlow','Helvetica Neue',Arial,sans-serif;
+  --nav-h:80px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--bone);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--olive);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* Announcement + header */
+.announce{background:var(--ink);color:var(--bone);text-align:center;font-size:12px;letter-spacing:.14em;padding:9px 12px;text-transform:uppercase}
+header{background:var(--bone);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.nav{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h)}
+.nav-left,.nav-right{flex:1;display:flex}
+.nav-right{justify-content:flex-end}
+.nav nav{display:flex;gap:26px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+.nav nav a:hover{color:var(--olive)}
+.brand{display:flex;align-items:center;justify-content:center;line-height:0}
+.brand-img{height:54px;width:auto;display:block}
+.wm-text{font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.cart-link{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;background:none;border:0;color:inherit}
+.cart-count{background:var(--olive);color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+.menu-toggle{display:none;background:none;border:0;font-size:24px;color:var(--ink)}
+
+/* Buttons */
+.btn{display:inline-block;background:var(--olive);color:#fff;border:0;padding:16px 34px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;border-radius:2px;transition:.2s}
+.btn:hover{background:var(--olive-dark)}
+
+/* Breadcrumbs */
+.crumbs{font-size:13px;color:var(--muted);padding:20px 0}
+.crumbs a:hover{color:var(--olive)}
+
+/* Photos */
+.ph{width:100%;height:100%;object-fit:cover;display:block}
+.zoom{position:relative;width:100%;height:100%;overflow:hidden;background:#15170f}
+.zoom img{width:100%;height:100%;object-fit:cover;transform-origin:50% 50%}
+
+/* Product page */
+.pdp{display:grid;grid-template-columns:1.1fr 1fr;gap:52px;padding-bottom:64px}
+.gallery-main{position:relative;aspect-ratio:1/1;background:#15170f;overflow:hidden;border:1px solid var(--line)}
+.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
+.thumb{position:relative;aspect-ratio:1/1;border:1px solid var(--line);background:#15170f;overflow:hidden;padding:0}
+.thumb.on{border-color:var(--olive);box-shadow:0 0 0 2px var(--olive)}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--olive);font-weight:600;margin-bottom:10px}
+h1,h2,h3{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:1.02;letter-spacing:.02em}
+.pdp h1{font-size:60px;margin-bottom:8px}
+.price{font-size:22px;font-weight:600;color:var(--olive);margin-bottom:16px}
+.price span{font-size:15px;color:var(--muted);font-weight:400}
+.desc{color:var(--muted);margin-bottom:24px;max-width:480px}
+.opt-label{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin-bottom:10px;display:flex;gap:10px;align-items:baseline}
+.opt-label b{color:var(--olive);font-weight:600;letter-spacing:.04em;text-transform:none;font-size:14px}
+.swatches{display:flex;gap:12px;margin-bottom:22px}
+.sw{width:40px;height:40px;border-radius:50%;border:1px solid rgba(0,0,0,.22);display:block}
+.sw.on{outline:2px solid var(--olive);outline-offset:3px}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.chip{padding:11px 20px;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.chip:hover{border-color:var(--olive)}
+.chip.on{border-color:var(--olive);background:var(--olive-soft);color:var(--olive-dark)}
+.buy-row{display:flex;gap:14px;margin:6px 0 16px}
+.qty{display:flex;border:1px solid var(--line);background:#fff}
+.qty button{width:42px;background:none;border:0;font-size:18px}
+.qty span{width:36px;text-align:center;align-self:center;font-weight:600}
+.buy-row .btn{flex:1}
+.perks{font-size:13px;color:var(--muted);display:grid;gap:6px;margin:18px 0 24px}
+details{border-top:1px solid var(--line);padding:16px 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+details p{margin-top:10px;color:var(--muted);font-size:15px}
+
+/* Videos */
+.videos{border-top:1px solid var(--line);padding:64px 0 24px;text-align:center}
+.rule{width:56px;height:3px;background:var(--olive);margin:0 auto 18px}
+.videos h2{font-size:46px}
+.videos .sub{color:var(--muted);font-size:17px;margin:6px 0 34px;letter-spacing:.04em}
+.vid{position:relative;width:100%;max-width:1000px;margin:0 auto;aspect-ratio:16/9;background:#10120c;overflow:hidden}
+.vid iframe,.tt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid-note{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:12px 0 0}
+.vsplit{width:100%;max-width:1000px;height:1px;background:var(--line);margin:44px auto}
+.tt-label{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.tt{position:relative;width:min(325px,100%);height:600px;margin:0 auto;background:#10120c;overflow:hidden;border-radius:14px}
+.ph-video{position:absolute;inset:0;display:grid;place-items:center;color:#ece7da;text-align:center;padding:24px;
+  background:
+   radial-gradient(circle at 30% 30%,rgba(86,99,58,.45),transparent 55%),
+   repeating-radial-gradient(circle at 70% 60%,rgba(236,231,218,.07) 0 2px,transparent 2px 22px),#10120c}
+.ph-video .play{width:78px;height:78px;border-radius:50%;background:var(--olive);display:grid;place-items:center;margin:0 auto 16px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.ph-video .play:after{content:"";border-left:22px solid #fff;border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:6px}
+.ph-video p{font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+
+/* You might also like */
+.recs{padding:56px 0 84px}
+.recs-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:26px;gap:16px}
+.recs-head h2{font-size:42px}
+.arrows{display:flex;gap:10px}
+.arrows button{width:46px;height:46px;border-radius:50%;border:1px solid var(--ink);background:transparent;font-size:22px;line-height:1;color:var(--ink)}
+.arrows button:hover{background:var(--ink);color:var(--bone)}
+.arrows button:disabled{opacity:.3;pointer-events:none}
+.arrows.hide{display:none}
+.rail{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.rail::-webkit-scrollbar{display:none}
+.rec{flex:0 0 calc((100% - 48px)/3);scroll-snap-align:start;background:#fff;border:1px solid var(--line);display:block;transition:.25s;position:relative}
+.rec:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(23,26,18,.14)}
+.rec-img{aspect-ratio:1/1;overflow:hidden;background:#15170f}
+.rec-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.rec:hover .rec-img img{transform:scale(1.04)}
+.rec-body{padding:18px 20px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.rec-body h3{font-size:28px}
+.rec-body .p{font-size:14px;color:var(--olive);font-weight:600}
+.rec-body .p span{color:var(--muted);font-weight:400}
+.rec-dot{width:26px;height:26px;border-radius:50%;border:1px solid rgba(0,0,0,.25);flex:none}
+.viewing{position:absolute;top:14px;left:14px;background:var(--ink);color:var(--bone);font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:5px 10px;z-index:2;font-weight:600}
+
+/* Footer */
+footer{background:var(--ink);color:#d9d6c8;padding:48px 0 28px;font-size:14px}
+.foot-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:32px}
+.foot-brand .brand-img{height:68px;filter:brightness(0) invert(1)}
+.foot-brand .wm-text{color:#fff}
+footer a{display:block;margin-bottom:8px;opacity:.8}
+footer a:hover{opacity:1}
+.legal{border-top:1px solid rgba(255,255,255,.14);padding-top:20px;font-size:12px;opacity:.65;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:14px 26px;font-size:14px;transition:.35s;z-index:100;max-width:calc(100% - 32px)}
+.toast.show{transform:translate(-50%,0)}
+.preview-tag{position:fixed;bottom:14px;right:14px;background:rgba(23,26,18,.88);color:#fff;font-size:11px;letter-spacing:.12em;padding:7px 12px;z-index:90;text-transform:uppercase}
+
+@media(max-width:900px){
+  .pdp{grid-template-columns:1fr;gap:28px}
+  .pdp h1{font-size:46px}
+  .nav nav{display:none}
+  .nav nav.open{display:flex;flex-direction:column;position:absolute;top:var(--nav-h);left:0;right:0;background:var(--bone);padding:20px 24px;border-bottom:1px solid var(--line);gap:16px}
+  .menu-toggle{display:block}
+  :root{--nav-h:68px}
+  .brand-img{height:44px}
+  .wm-text{font-size:23px}
+  .videos h2{font-size:36px}
+  .recs-head h2{font-size:34px}
+  .rec{flex-basis:82%}
+  .arrows button{width:40px;height:40px}
+  .thumbs{gap:6px}
+}
+@media(max-width:480px){
+  .brand-img{height:40px}
+  .wm-text{font-size:19px;letter-spacing:.03em}
+  .nav-right,.nav-left{flex:0 0 64px}
+  .cart-link{font-size:11px;gap:6px;letter-spacing:.1em}
+  .cart-link .cart-count{width:20px;height:20px;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rec,.rec-img img,.toast{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="announce">Free shipping on orders over $50 &nbsp;·&nbsp; Limited-edition drops</div>
+<header>
+  <div class="wrap nav">
+    <div class="nav-left">
+      <button class="menu-toggle" id="menuBtn" aria-label="Menu">☰</button>
+      <nav id="mainNav">
+        <a href="#/p/white">Home</a>
+        <a href="#recs">Shop All</a>
+        <a href="#videos">Watch</a>
+      </nav>
+    </div>
+    <a href="#/p/white" class="brand" id="wordmark"></a>
+    <div class="nav-right">
+      <button class="cart-link" id="cartBtn">Cart <span class="cart-count" id="cartCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="crumbs" id="crumbs"></div>
+    <section class="pdp" id="pdp"></section>
+  </div>
+
+  <section class="videos" id="videos"></section>
+
+  <section class="recs" id="recs"></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand" id="footMark"></div>
+      <div><a href="#/p/white">Shop</a><a href="#videos">Watch</a><a href="#recs">You might also like</a></div>
+      <div><a href="#/p/white">Shipping</a><a href="#/p/white">Returns</a><a href="#/p/white">Size guide</a></div>
+    </div>
+    <div class="legal"><span id="legalName"></span><span>Preview mockup, not a live store</span></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+<div class="preview-tag">Preview mockup</div>
+
+<script>
+/* =====================================================================
+   EDIT THIS BLOCK
+   ---------------------------------------------------------------------
+   Logo: images/modern-savage-logo.png (transparent PNG; shown in white in the footer)
+   Images: 12 files in an /images folder next to this file, named
+     images/savage-{white|olive|black}-{overview|contour|line|summit}.jpg
+   (the page falls back to the hosted AI-generated versions if a file is missing)
+   Videos: paste normal share links. Leave '' to show a placeholder.
+   ===================================================================== */
+const PARTNER = {
+  name: 'Modern Savage',
+  logo: 'images/modern-savage-logo.png',
+  tag: 'Crew socks',
+  videoTitle: 'Watch Modern Savage',
+  videoSub: 'Behind the brand.'
+};
+const VIDEOS = {
+  youtube: '',   // e.g. 'https://www.youtube.com/watch?v=XXXXXXXXXXX'
+  tiktok:  ''    // e.g. 'https://www.tiktok.com/@name/video/1234567890123456789'
+};
+const PRICE = 20, PACK = '2-pair pack', FREE_SHIP = 50;
+
+const CDN = 'https://d8j0ntlcm91z4.cloudfront.net/user_3Dwo2Ee132WGRcmWC238Fi4lMR2/';
+/* hosted fallback files (overview = the three designs together) */
+const HOSTED = {
+  white:{ overview:'hf_20261010_053238_9737e6a2-8b89-49ce-887c-79dbf54a2c4a', contour:'hf_20261010_053239_4b0d3803-b3ce-4644-a1b6-9f7b80741af0', line:'hf_20261010_053238_160255a9-12e4-4232-b70c-527a7421bf2a', summit:'hf_20261010_053238_4bcff7c0-2b29-47c8-b30b-50052bf59891' },
+  olive:{ overview:'hf_20261010_053312_9eeec42b-a400-4438-b578-f4e2cb6ff497', contour:'hf_20261010_053312_e73b1444-45bd-4ea5-ac8d-261b5f107c75', line:'hf_20261010_053311_737e43fa-9b43-4b52-bfdd-e4164a4dc406', summit:'hf_20261010_053312_061e6648-1b3e-43a6-b8ef-26f5549b9cfb' },
+  black:{ overview:'hf_20261010_053333_72750c7b-e232-4774-b9a1-fb220758adae', contour:'hf_20261010_053333_9fa7c4c1-05fb-4a9a-a5ba-60fbfbc5858a', line:'hf_20261010_053333_a8ee932c-cc6a-4184-913d-045b7c45ed3a', summit:'hf_20261010_053333_72676d5e-89bc-4ced-afe3-decdf2d07fe2' }
+};
+/* One product per colourway */
+const PRODUCTS = [
+  { id:'white', name:'Bone White',  hex:'#f4f1ea' },
+  { id:'olive', name:'Field Olive', hex:'#56633a' },
+  { id:'black', name:'Night Black', hex:'#151515' }
+];
+PRODUCTS.forEach(p => {
+  p.imgs = {};
+  ['overview','contour','line','summit'].forEach(k => {
+    p.imgs[k] = { local:`images/savage-${p.id}-${k}.jpg`, url:CDN + HOSTED[p.id][k] + '.png' };
+  });
+});
+const DESIGNS = [
+  { id:'contour', name:'Contour' },   /* topographic lines */
+  { id:'line',    name:'Line' },      /* vertical stripe */
+  { id:'summit',  name:'Summit' }     /* peaks and pines */
+];
+const SIZES = ['S/M (5–7.5)','M/L (8–10)'];
+const DESC = 'Cushioned ribbed crews with bold graphics, made for the trail and the street. Pick your colour, then your design: Contour, Line or Summit.';
+const CLOSE = { s:2, cx:.5, cy:.3 };   /* close-up zoom: scale and centre point */
+
+/* =====================================================================
+   HELPERS
+   ===================================================================== */
+const $ = s => document.querySelector(s);
+const find = id => PRODUCTS.find(p => p.id === id) || PRODUCTS[0];
+const money = n => '$' + n.toFixed(2);
+const FB = i => `onerror="this.onerror=null;this.src='${i.url}'"`;
+const photo = (p, key, cls, alt) => { const i = p.imgs[key]; return `<img class="${cls||''}" src="${i.local}" ${FB(i)} alt="${alt||''}">`; };
+function zoomed(p, key, alt){
+  const i = p.imgs[key];
+  const t = `scale(${CLOSE.s}) translate(${((.5-CLOSE.cx)*100).toFixed(1)}%,${((.5-CLOSE.cy)*100).toFixed(1)}%)`;
+  return `<div class="zoom"><img src="${i.local}" ${FB(i)} style="transform:${t}" alt="${alt||''}"></div>`;
+}
+/* gallery views: 0 overview, 1-3 the three designs, 4 close-up of the chosen design */
+function viewHTML(p, i){
+  if(i === 0) return photo(p, 'overview', 'ph', `${p.name} socks, all three designs`);
+  if(i <= 3)  return photo(p, DESIGNS[i-1].id, 'ph', `${p.name} socks, ${DESIGNS[i-1].name} design`);
+  return zoomed(p, DESIGNS[design].id, `${p.name} ${DESIGNS[design].name} close-up`);
+}
+
+/* =====================================================================
+   STATE
+   ===================================================================== */
+let cur = PRODUCTS[0], design = 0, size = 0, qty = 1, view = 0, cartN = 0;
+
+/* =====================================================================
+   PRODUCT PAGE
+   ===================================================================== */
+function renderPDP(){
+  const p = cur;
+  document.title = `${p.name} | ${PARTNER.name} Socks`;
+  $('#crumbs').innerHTML = `<a href="#/p/white">Home</a> / <a href="#recs">Shop All</a> / ${p.name}`;
+  $('#pdp').innerHTML = `
+    <div>
+      <div class="gallery-main" id="gMain"></div>
+      <div class="thumbs" id="gThumbs"></div>
+    </div>
+    <div>
+      <div class="eyebrow">${PARTNER.tag} · Limited edition</div>
+      <h1>${p.name}</h1>
+      <div class="price">${money(PRICE)} <span>· ${PACK}</span></div>
+      <p class="desc">${DESC}</p>
+
+      <div class="opt-label">Colour <b>${p.name}</b></div>
+      <div class="swatches">${PRODUCTS.map(x=>`<a class="sw ${x.id===p.id?'on':''}" href="#/p/${x.id}" style="background:${x.hex}" title="${x.name}" aria-label="${x.name}"></a>`).join('')}</div>
+
+      <div class="opt-label">Design <b id="designName">${DESIGNS[design].name}</b></div>
+      <div class="chips" id="designChips">${DESIGNS.map((d,i)=>`<button class="chip ${i===design?'on':''}" aria-pressed="${i===design}" onclick="pickDesign(${i})">${d.name}</button>`).join('')}</div>
+
+      <div class="opt-label">Size</div>
+      <div class="chips" id="sizeChips">${SIZES.map((s,i)=>`<button class="chip ${i===size?'on':''}" aria-pressed="${i===size}" onclick="pickSize(${i})">${s}</button>`).join('')}</div>
+
+      <div class="buy-row">
+        <div class="qty"><button onclick="chQty(-1)" aria-label="Decrease">−</button><span id="qtyV">${qty}</span><button onclick="chQty(1)" aria-label="Increase">+</button></div>
+        <button class="btn" onclick="addToCart()">Add to cart</button>
+      </div>
+      <div class="perks"><span>♦ Free shipping over $${FREE_SHIP}</span><span>♦ Easy 30-day returns</span><span>♦ Limited run, once it's gone it's gone</span></div>
+      <details open><summary>Details</summary><p>Soft cotton blend with moisture management, cushioned foot, arch support and reinforced heel and toe, built for all-day comfort and durability.</p></details>
+      <details><summary>Size &amp; fit</summary><p>S/M fits US 5–7.5. M/L fits US 8–10.</p></details>
+    </div>`;
+  renderGallery();
+}
+function renderGallery(){
+  const p = cur;
+  const labels = ['Overview','Design: '+DESIGNS[0].name,'Design: '+DESIGNS[1].name,'Design: '+DESIGNS[2].name,'Close-up'];
+  $('#gMain').innerHTML = viewHTML(p, view);
+  $('#gThumbs').innerHTML = [0,1,2,3,4].map(i =>
+    `<button class="thumb ${i===view?'on':''}" aria-label="${labels[i]}" onclick="showView(${i})">${viewHTML(p,i)}</button>`).join('');
+}
+function showView(i){
+  view = i;
+  if(i >= 1 && i <= 3){ design = i - 1; syncDesign(); }
+  renderGallery();
+}
+function pickDesign(i){ design = i; view = i + 1; syncDesign(); renderGallery(); }
+function syncDesign(){
+  $('#designName').textContent = DESIGNS[design].name;
+  document.querySelectorAll('#designChips .chip').forEach((el,k)=>{ el.classList.toggle('on',k===design); el.setAttribute('aria-pressed',String(k===design)); });
+}
+function pickSize(i){
+  size = i;
+  document.querySelectorAll('#sizeChips .chip').forEach((el,k)=>{ el.classList.toggle('on',k===i); el.setAttribute('aria-pressed',String(k===i)); });
+}
+function chQty(d){ qty = Math.max(1, qty + d); $('#qtyV').textContent = qty; }
+function addToCart(){
+  cartN += qty; $('#cartCount').textContent = cartN;
+  toast(`Added ${qty} × ${cur.name} · ${DESIGNS[design].name} · ${SIZES[size]}`);
+}
+
+/* =====================================================================
+   VIDEOS (YouTube + TikTok)
+   ===================================================================== */
+const ytId = u => { const m = (u||'').match(/(?:youtu\.be\/|[?&]v=|shorts\/|embed\/)([\w-]{11})/); return m ? m[1] : null; };
+const ttId = u => { const m = (u||'').match(/video\/(\d+)/); return m ? m[1] : null; };
+function renderVideos(){
+  const y = ytId(VIDEOS.youtube), t = ttId(VIDEOS.tiktok);
+  const yt = y
+    ? `<iframe src="https://www.youtube-nocookie.com/embed/${y}?rel=0" title="${PARTNER.name} on YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`
+    : `<div class="ph-video"><div><div class="play"></div><p>YouTube video preview</p></div></div>`;
+  const tk = t
+    ? `<iframe src="https://www.tiktok.com/embed/v2/${t}" title="${PARTNER.name} on TikTok" allow="fullscreen" loading="lazy"></iframe>`
+    : `<div class="ph-video"><div><div class="play"></div><p>TikTok video preview</p></div></div>`;
+  $('#videos').innerHTML = `<div class="wrap">
+    <div class="rule"></div>
+    <h2>${PARTNER.videoTitle}</h2>
+    <p class="sub">${PARTNER.videoSub}</p>
+    <div class="vid">${yt}</div>
+    ${y ? '' : '<p class="vid-note">Video preview</p>'}
+    <div class="vsplit"></div>
+    <div class="tt-label">On TikTok</div>
+    <div class="tt">${tk}</div>
+    ${t ? '' : '<p class="vid-note">Video preview</p>'}
+  </div>`;
+}
+
+/* =====================================================================
+   YOU MIGHT ALSO LIKE (carousel, each card loads this page with that product)
+   ===================================================================== */
+function renderRecs(){
+  $('#recs').innerHTML = `<div class="wrap">
+    <div class="recs-head"><div><div class="eyebrow">More colours</div><h2>You might also like</h2></div>
+      <div class="arrows" id="arrows"><button id="rPrev" aria-label="Previous">‹</button><button id="rNext" aria-label="Next">›</button></div></div>
+    <div class="rail" id="rail">${PRODUCTS.map(x=>`
+      <a class="rec" href="#/p/${x.id}">
+        ${x.id===cur.id?'<span class="viewing">Viewing</span>':''}
+        <div class="rec-img">${photo(x,'overview','',`${x.name} socks, three designs`)}</div>
+        <div class="rec-body"><div><h3>${x.name}</h3><div class="p">${money(PRICE)} <span>· ${PACK}</span></div></div><span class="rec-dot" style="background:${x.hex}"></span></div>
+      </a>`).join('')}</div>
+  </div>`;
+  const rail = $('#rail'), prev = $('#rPrev'), next = $('#rNext'), box = $('#arrows');
+  const upd = () => {
+    const over = rail.scrollWidth > rail.clientWidth + 4;
+    box.classList.toggle('hide', !over);
+    prev.disabled = rail.scrollLeft <= 4;
+    next.disabled = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 4;
+  };
+  const step = () => (rail.querySelector('.rec').offsetWidth + 24);
+  prev.onclick = () => rail.scrollBy({left:-step(), behavior:'smooth'});
+  next.onclick = () => rail.scrollBy({left: step(), behavior:'smooth'});
+  rail.addEventListener('scroll', upd, {passive:true});
+  if(window.__recsResize) window.removeEventListener('resize', window.__recsResize);
+  window.__recsResize = upd;
+  window.addEventListener('resize', upd);
+  upd();
+}
+
+/* =====================================================================
+   TOAST + ROUTER
+   ===================================================================== */
+let tt;
+function toast(msg){
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(tt); tt = setTimeout(()=>t.classList.remove('show'), 2800);
+}
+function route(){
+  const m = (location.hash || '').match(/^#\/p\/(\w+)/);
+  if(!m && location.hash && !location.hash.startsWith('#/')) return;   /* in-page anchors (#recs, #videos) */
+  const next = find(m ? m[1] : 'white');
+  const changed = next.id !== cur.id;
+  cur = next;
+  if(changed){ view = design + 1; }
+  renderPDP(); renderRecs();
+  $('#mainNav').classList.remove('open');
+  if(m) window.scrollTo({top:0});
+}
+function init(){
+  const mark = PARTNER.name.toUpperCase();
+  const logo = `<img class="brand-img" src="${PARTNER.logo}" alt="${PARTNER.name}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'wm-text',textContent:'${mark}'}))">`;
+  $('#wordmark').innerHTML = logo;
+  $('#wordmark').setAttribute('aria-label', PARTNER.name + ' home');
+  $('#footMark').innerHTML = logo;
+  $('#legalName').textContent = `© 2026 ${PARTNER.name}.`;
+  $('#menuBtn').onclick = () => $('#mainNav').classList.toggle('open');
+  $('#cartBtn').onclick = () => toast('Preview only. Shopify cart goes here');
+  window.addEventListener('hashchange', route);
+  renderVideos();
+  route();
+}
+init();
+</script>
+</body>
+</html>
