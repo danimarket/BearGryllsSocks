@@ -190,12 +190,12 @@ footer a:hover{opacity:1}
     <div class="nav-left">
       <button class="menu-toggle" id="menuBtn" aria-label="Menu">☰</button>
       <nav id="mainNav">
-        <a href="#/p/white">Home</a>
+        <a href="#/p/ngu">Home</a>
         <a href="#recs">Shop All</a>
         <a href="#videos">Watch</a>
       </nav>
     </div>
-    <a href="#/p/white" class="brand" id="wordmark"></a>
+    <a href="#/p/ngu" class="brand" id="wordmark"></a>
     <div class="nav-right">
       <button class="cart-link" id="cartBtn">Cart <span class="cart-count" id="cartCount">0</span></button>
     </div>
@@ -217,8 +217,8 @@ footer a:hover{opacity:1}
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand" id="footMark"></div>
-      <div><a href="#/p/white">Shop</a><a href="#videos">Watch</a><a href="#recs">You might also like</a></div>
-      <div><a href="#/p/white">Shipping</a><a href="#/p/white">Returns</a><a href="#/p/white">Size guide</a></div>
+      <div><a href="#/p/ngu">Shop</a><a href="#videos">Watch</a><a href="#recs">You might also like</a></div>
+      <div><a href="#/p/ngu">Shipping</a><a href="#/p/ngu">Returns</a><a href="#/p/ngu">Size guide</a></div>
     </div>
     <div class="legal"><span id="legalName"></span><span>Preview mockup, not a live store</span></div>
   </div>
@@ -251,7 +251,9 @@ const VIDEOS = {
 const OFFER = {
   label: 'Limited offer',
   text:  'Order Modern Savage and receive a 2-pack of Never Give Up Bear Grylls socks.',
-  product: 'ngu'
+  product: 'ngu',                 /* the gift shown in the card */
+  cta:  'Shop Modern Savage',
+  href: '#/p/white'               /* where the card links to */
 };
 const PRICE = 30, PACK = '2-pair pack', FREE_SHIP = 50;
 
@@ -262,14 +264,14 @@ const HOSTED = {
   olive:{ overview:'hf_20261010_053312_9eeec42b-a400-4438-b578-f4e2cb6ff497', contour:'hf_20261010_053312_e73b1444-45bd-4ea5-ac8d-261b5f107c75', line:'hf_20261010_053311_737e43fa-9b43-4b52-bfdd-e4164a4dc406', summit:'hf_20261010_053312_061e6648-1b3e-43a6-b8ef-26f5549b9cfb' },
   black:{ overview:'hf_20261010_053333_72750c7b-e232-4774-b9a1-fb220758adae', contour:'hf_20261010_053333_9fa7c4c1-05fb-4a9a-a5ba-60fbfbc5858a', line:'hf_20261010_053333_a8ee932c-cc6a-4184-913d-045b7c45ed3a', summit:'hf_20261010_053333_72676d5e-89bc-4ced-afe3-decdf2d07fe2' }
 };
-/* Modern Savage = one product per colourway. Never Give Up = one product with a single photo. */
+/* Never Give Up = the landing product (one photo). Modern Savage = one product per colourway. */
 const PRODUCTS = [
-  { id:'white', name:'Bone White',  hex:'#f4f1ea' },
-  { id:'olive', name:'Field Olive', hex:'#56633a' },
-  { id:'black', name:'Night Black', hex:'#151515' },
   { id:'ngu',   name:'Never Give Up', single:true, brand:'Bear Grylls',
     eyebrow:'Bear Grylls · Performance hiking socks',
-    src:'images/never-give-up.jpg', W:853, H:1280, bg:'#faf3ee' }
+    src:'images/never-give-up.jpg', W:853, H:1280, bg:'#faf3ee' },
+  { id:'white', name:'Bone White',  hex:'#f4f1ea' },
+  { id:'olive', name:'Field Olive', hex:'#56633a' },
+  { id:'black', name:'Night Black', hex:'#151515' }
 ];
 PRODUCTS.forEach(p => {
   if(p.single) return;
@@ -333,7 +335,7 @@ let cur = PRODUCTS[0], design = 0, size = 0, qty = 1, view = 0, cartN = 0;
 function renderPDP(){
   const p = cur, S = !!p.single;
   document.title = `${p.name} | ${S ? p.brand : PARTNER.name} Socks`;
-  $('#crumbs').innerHTML = `<a href="#/p/white">Home</a> / <a href="#recs">Shop All</a> / ${p.name}`;
+  $('#crumbs').innerHTML = `<a href="#/p/ngu">Home</a> / <a href="#recs">Shop All</a> / ${p.name}`;
   const options = S ? '' : `
       <div class="opt-label">Colour <b>${p.name}</b></div>
       <div class="swatches">${PRODUCTS.filter(x=>!x.single).map(x=>`<a class="sw ${x.id===p.id?'on':''}" href="#/p/${x.id}" style="background:${x.hex}" title="${x.name}" aria-label="${x.name}"></a>`).join('')}</div>
@@ -412,9 +414,9 @@ function renderVideos(){
     <h2>${PARTNER.videoTitle}</h2>
     <p class="sub">${PARTNER.videoSub}</p>
     <div class="vrow">${vcol('On YouTube', yt)}${vcol('On TikTok', tk)}</div>
-    <a class="offer" href="#/p/${n.id}">
+    <a class="offer" href="${OFFER.href}">
       <img src="${n.src}" alt="${n.name} 2-pack with packaging">
-      <div><span class="tag">${OFFER.label}</span><p>${OFFER.text}</p><span class="more">See ${n.name} →</span></div>
+      <div><span class="tag">${OFFER.label}</span><p>${OFFER.text}</p><span class="more">${OFFER.cta} →</span></div>
     </a>
   </div>`;
 }
@@ -463,7 +465,7 @@ function toast(msg){
 function route(){
   const m = (location.hash || '').match(/^#\/p\/(\w+)/);
   if(!m && location.hash && !location.hash.startsWith('#/')) return;   /* in-page anchors (#recs, #videos) */
-  const next = find(m ? m[1] : 'white');
+  const next = find(m ? m[1] : 'ngu');
   const changed = next.id !== cur.id;
   cur = next;
   if(changed){ view = next.single ? 0 : design + 1; }
