@@ -107,7 +107,7 @@ details p{margin-top:10px;color:var(--muted);font-size:15px}
 .ph-video p{font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
 
 /* Limited offer */
-.offer{display:flex;align-items:center;gap:22px;max-width:720px;margin:44px auto 0;padding:18px 22px;background:#fff;border:1px solid var(--line);text-align:left;transition:.25s}
+.offer{display:flex;align-items:center;gap:22px;max-width:720px;margin:28px auto 0;padding:18px 22px;background:#fff;border:1px solid var(--line);text-align:left;transition:.25s}
 .offer:hover{box-shadow:0 14px 30px rgba(23,26,18,.12)}
 .offer img{width:84px;height:112px;object-fit:cover;object-position:center 55%;flex:none;border:1px solid var(--line);background:#f1ede4}
 .offer .tag{display:inline-block;background:var(--ink);color:var(--bone);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:4px 10px;margin-bottom:8px}
@@ -204,6 +204,7 @@ footer a:hover{opacity:1}
 
 <main>
   <div class="wrap">
+    <div id="offerBox"></div>
     <div class="crumbs" id="crumbs"></div>
     <section class="pdp" id="pdp"></section>
   </div>
@@ -235,7 +236,7 @@ footer a:hover{opacity:1}
    Photos: images/savage-{white|olive|black}-{overview|contour|line|summit}.jpg  (12 files)
            images/never-give-up.jpg  (the Never Give Up 2-pack with packaging)
    (the 12 Modern Savage photos fall back to hosted versions if a file is missing)
-   Videos: paste normal share links. Leave '' to show a placeholder.
+   Videos: paste normal share links. Leave '' to show a placeholder. The YouTube video autoplays (muted) when it scrolls into view.
    ===================================================================== */
 const PARTNER = {
   name: 'Modern Savage',
@@ -403,22 +404,46 @@ const vcol = (label, inner) => `<div class="vcol"><div class="vlabel">${label}</
 function renderVideos(){
   const y = ytId(VIDEOS.youtube), t = ttId(VIDEOS.tiktok);
   const yt = y
-    ? `<iframe src="https://www.youtube-nocookie.com/embed/${y}?rel=0" title="${PARTNER.name} on YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`
+    ? `<iframe id="ytFrame" data-vid="${y}" title="${PARTNER.name} on YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
     : `<div class="ph-video"><div><div class="play"></div><p>YouTube video preview</p></div></div>`;
   const tk = t
     ? `<iframe src="https://www.tiktok.com/embed/v2/${t}" title="${PARTNER.name} on TikTok" allow="fullscreen" loading="lazy"></iframe>`
     : `<div class="ph-video"><div><div class="play"></div><p>TikTok video preview</p></div></div>`;
-  const n = find(OFFER.product);
   $('#videos').innerHTML = `<div class="wrap">
     <div class="rule"></div>
     <h2>${PARTNER.videoTitle}</h2>
     <p class="sub">${PARTNER.videoSub}</p>
     <div class="vrow">${vcol('On YouTube', yt)}${vcol('On TikTok', tk)}</div>
-    <a class="offer" href="${OFFER.href}">
+  </div>`;
+  initYouTube();
+}
+/* Limited-offer box, shown at the very top of the page, above the product */
+function renderOffer(){
+  const n = find(OFFER.product);
+  $('#offerBox').innerHTML = `<a class="offer" href="${OFFER.href}">
       <img src="${n.src}" alt="${n.name} 2-pack with packaging">
       <div><span class="tag">${OFFER.label}</span><p>${OFFER.text}</p><span class="more">${OFFER.cta} →</span></div>
-    </a>
-  </div>`;
+    </a>`;
+}
+/* YouTube autoplay: starts (muted, looping) when the video scrolls into view, pauses when it leaves.
+   Browsers only allow autoplay with the sound off, so viewers tap the speaker icon to unmute. */
+function initYouTube(){
+  const f = document.getElementById('ytFrame'); if(!f) return;
+  const id = f.dataset.vid;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const post = fn => { if(f.contentWindow) f.contentWindow.postMessage(JSON.stringify({event:'command', func:fn, args:[]}), '*'); };
+  let loaded = false;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        if(!loaded){
+          loaded = true;
+          f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=${reduce ? 0 : 1}&mute=1&loop=1&playlist=${id}&playsinline=1&rel=0&enablejsapi=1`;
+        } else if(!reduce){ post('playVideo'); }
+      } else if(loaded){ post('pauseVideo'); }
+    });
+  }, {threshold:.4});
+  io.observe(f);
 }
 
 /* =====================================================================
@@ -483,6 +508,7 @@ function init(){
   $('#menuBtn').onclick = () => $('#mainNav').classList.toggle('open');
   $('#cartBtn').onclick = () => toast('Preview only. Shopify cart goes here');
   window.addEventListener('hashchange', route);
+  renderOffer();
   renderVideos();
   route();
 }
