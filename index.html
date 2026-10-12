@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Creator Essentials | Preview</title>
+<title>Creator Collaborators | Preview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
@@ -23,11 +23,15 @@ header:after{content:"";position:absolute;left:50%;bottom:-1px;width:64px;height
 .logo{display:inline-block;font-family:var(--serif);font-size:40px;line-height:1;color:var(--green);letter-spacing:.01em}
 
 main{flex:1;display:grid;place-items:center;padding:56px 24px 110px}
-.collabs{text-align:center;width:100%}
-.cap{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:24px}
-ul{list-style:none;display:grid;gap:14px}
-li{display:flex;justify-content:center}
-.collab{display:inline-flex;align-items:center;justify-content:center;gap:16px;width:min(340px,100%);padding:21px 36px;border:1.5px solid var(--green);color:var(--green);background:transparent;font-size:15px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;transition:background .2s,color .2s}
+.creators{display:grid;gap:28px;width:100%;justify-items:center}
+
+/* one card per creator; the creator's collaborators are listed inside it */
+.creator{width:min(440px,100%);background:#fff;border:1.5px solid var(--green);padding:34px 30px 30px;text-align:center}
+.creator-name{font-family:var(--serif);font-size:36px;line-height:1.05;color:var(--green);font-weight:400}
+.creator-name:after{content:"";display:block;width:48px;height:2px;background:var(--gold);margin:18px auto 20px}
+.cap{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:16px}
+ul{list-style:none;display:grid;gap:12px}
+.collab{display:flex;align-items:center;justify-content:center;gap:16px;width:100%;padding:19px 24px;border:1.5px solid var(--green);color:var(--green);background:transparent;font-size:15px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;transition:background .2s,color .2s}
 .collab span{transition:transform .2s;letter-spacing:0}
 .collab:hover,.collab:focus-visible{background:var(--green);color:#fff}
 .collab:hover span{transform:translateX(5px)}
@@ -36,8 +40,10 @@ li{display:flex;justify-content:center}
 
 @media(max-width:600px){
   header{padding:22px 16px 20px}
-  .logo{font-size:32px}
-  .collab{padding:19px 24px;font-size:14px}
+  .logo{font-size:30px}
+  .creator{padding:28px 20px 22px}
+  .creator-name{font-size:32px}
+  .collab{padding:17px 16px;font-size:14px}
 }
 @media(prefers-reduced-motion:reduce){
   .collab,.collab span{transition:none}
@@ -47,17 +53,24 @@ li{display:flex;justify-content:center}
 <body>
 
 <header>
-  <a href="./" class="logo" aria-label="Creator Essentials home">Creator Essentials</a>
+  <a href="./" class="logo" aria-label="Creator Collaborators home">Creator Collaborators</a>
 </header>
 
 <main>
-  <div class="collabs">
-    <div class="cap">Collaborators</div>
-    <ul>
-      <li><a class="collab" href="savage.html">Bear Grylls <span aria-hidden="true">→</span></a></li>
-      <!-- To add the next collaborator, copy the line above and change the name and the file it links to, e.g.
-      <li><a class="collab" href="jessica.html">Jessica Simpson <span aria-hidden="true">→</span></a></li> -->
-    </ul>
+  <div class="creators">
+
+    <section class="creator" aria-labelledby="c-bear">
+      <h1 class="creator-name" id="c-bear">Bear Grylls</h1>
+      <div class="cap">Collaborators</div>
+      <ul>
+        <li><a class="collab" href="savage.html">Modern Savage <span aria-hidden="true">→</span></a></li>
+        <!-- To add another collaborator for Bear Grylls, copy the line above and change the name and the page it links to, e.g.
+        <li><a class="collab" href="their-page.html">Collaborator Name <span aria-hidden="true">→</span></a></li> -->
+      </ul>
+    </section>
+
+    <!-- To add another creator (with their own collaborators), copy the whole <section class="creator"> block above and change the name and the links. -->
+
   </div>
 </main>
 
