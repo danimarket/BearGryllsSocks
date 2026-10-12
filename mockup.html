@@ -1,862 +1,518 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bear Grylls Socks — Built for Wherever the Trail Ends</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modern Savage Socks | Preview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --pine: #16302A;
-    --pine-deep: #0E211D;
-    --rust: #C1451B;
-    --rust-bright: #E15A25;
-    --stone: #DDD2B9;
-    --paper: #F6F1E4;
-    --charcoal: #191510;
-    --ink: #241E17;
-    --line: rgba(25,21,16,0.14);
-    --gold: #C99A3D;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Inter',sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3,.display{
-    font-family:'Oswald',sans-serif;
-    text-transform:uppercase;
-    letter-spacing:0.02em;
-    font-weight:600;
-    line-height:1.05;
-  }
-  .mono{font-family:'JetBrains Mono',monospace;}
-  a{color:inherit;text-decoration:none;}
-  img{display:block;max-width:100%;}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+:root{
+  --bone:#f6f3ea; --bone-2:#ece7da; --ink:#171a12; --muted:#6c705f; --line:#dcd6c5;
+  --olive:#56633a; --olive-dark:#434e2d; --olive-soft:#e4e8d6; --white:#fff;
+  --display:'Barlow Condensed','Arial Narrow',Impact,sans-serif; --sans:'Barlow','Helvetica Neue',Arial,sans-serif;
+  --nav-h:80px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--bone);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--olive);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 
-  /* topo texture */
-  .topo{
-    background-image:
-      repeating-radial-gradient(circle at 20% 30%, transparent 0, transparent 38px, rgba(255,255,255,0.035) 39px, transparent 40px),
-      repeating-radial-gradient(circle at 80% 70%, transparent 0, transparent 52px, rgba(255,255,255,0.03) 53px, transparent 54px);
-  }
+/* Announcement + header */
+.announce{background:var(--ink);color:var(--bone);text-align:center;font-size:12px;letter-spacing:.14em;padding:9px 12px;text-transform:uppercase}
+header{background:var(--bone);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.nav{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h)}
+.nav-left,.nav-right{flex:1;display:flex}
+.nav-right{justify-content:flex-end}
+.nav nav{display:flex;gap:26px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+.nav nav a:hover{color:var(--olive)}
+.brand{display:flex;align-items:center;justify-content:center;line-height:0}
+.brand-img{height:54px;width:auto;display:block}
+.wm-text{font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.cart-link{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;background:none;border:0;color:inherit}
+.cart-count{background:var(--olive);color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+.menu-toggle{display:none;background:none;border:0;font-size:24px;color:var(--ink)}
 
-  /* NAV */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:var(--pine-deep);
-    border-bottom:1px solid rgba(255,255,255,0.08);
-  }
-  .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:16px 32px;
-  }
-  .logo{
-    display:flex; align-items:center; gap:10px;
-    color:var(--paper);
-  }
-  .logo .mark{
-    width:34px;height:34px;border:2px solid var(--rust-bright);
-    border-radius:50%;display:flex;align-items:center;justify-content:center;
-    font-family:'Oswald',sans-serif;font-weight:700;font-size:15px;color:var(--rust-bright);
-  }
-  .logo .word{font-family:'Oswald',sans-serif;font-weight:600;font-size:17px;letter-spacing:0.06em;text-transform:uppercase;}
-  .logo .word span{color:var(--rust-bright);}
-  nav ul{display:flex;gap:34px;list-style:none;}
-  nav ul li a{
-    color:rgba(246,241,228,0.72);
-    font-size:13px; letter-spacing:0.08em; text-transform:uppercase; font-weight:500;
-    transition:color .2s;
-  }
-  nav ul li a:hover{color:var(--paper);}
-  .nav-cta{
-    background:var(--rust); color:var(--paper);
-    padding:11px 22px; border-radius:2px;
-    font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600;
-    border:1px solid var(--rust);
-    transition:background .2s;
-  }
-  .nav-cta:hover{background:var(--rust-bright);}
-  .nav-links-mobile{display:none;}
+/* Buttons */
+.btn{display:inline-block;background:var(--olive);color:#fff;border:0;padding:16px 34px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;border-radius:2px;transition:.2s}
+.btn:hover{background:var(--olive-dark)}
 
-  /* HERO */
-  .hero{
-    position:relative;
-    min-height:88vh;
-    display:flex; align-items:flex-end;
-    background:#0c1a16;
-    overflow:hidden;
-  }
-  .hero img{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-    opacity:0.6;
-  }
-  .hero::before{
-    content:'';
-    position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(14,33,29,0.35) 0%, rgba(14,33,29,0.55) 45%, rgba(10,20,17,0.96) 100%);
-  }
-  .hero-inner{
-    position:relative; z-index:2;
-    padding:0 32px 72px;
-    width:100%;
-  }
-  .hero-badge{
-    display:inline-flex; align-items:center; gap:8px;
-    background:rgba(246,241,228,0.1);
-    border:1px solid rgba(246,241,228,0.35);
-    color:var(--paper);
-    padding:7px 14px; border-radius:2px;
-    font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase; font-weight:500;
-    margin-bottom:22px;
-    backdrop-filter:blur(2px);
-  }
-  .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--rust-bright);}
-  .hero h1{
-    color:var(--paper);
-    font-size:clamp(42px, 6.2vw, 92px);
-    max-width:820px;
-    margin-bottom:22px;
-  }
-  .hero h1 em{font-style:normal;color:var(--gold);}
-  .hero p.lead{
-    color:rgba(246,241,228,0.78);
-    font-size:18px; max-width:480px; line-height:1.6;
-    margin-bottom:34px;
-    font-weight:400;
-  }
-  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap; align-items:center;}
-  .btn-primary{
-    background:var(--rust); color:var(--paper);
-    padding:16px 30px; border-radius:2px;
-    font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; font-size:14px;
-    border:1px solid var(--rust);
-    transition:transform .15s, background .2s;
-    display:inline-block;
-  }
-  .btn-primary:hover{background:var(--rust-bright); transform:translateY(-1px);}
-  .btn-ghost{
-    color:var(--paper);
-    padding:16px 8px;
-    font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; font-size:14px;
-    border-bottom:1px solid rgba(246,241,228,0.4);
-    display:inline-flex; align-items:center; gap:8px;
-  }
+/* Breadcrumbs */
+.crumbs{font-size:13px;color:var(--muted);padding:20px 0}
+.crumbs a:hover{color:var(--olive)}
 
-  /* TRUST STRIP */
-  .trust{
-    background:var(--charcoal);
-    padding:20px 0;
-    border-bottom:1px solid rgba(255,255,255,0.06);
-  }
-  .trust .wrap{
-    display:flex; align-items:center; justify-content:center; gap:56px;
-    flex-wrap:wrap;
-  }
-  .trust-item{
-    color:rgba(246,241,228,0.55);
-    font-size:12px; letter-spacing:0.12em; text-transform:uppercase; font-weight:500;
-    display:flex; align-items:center; gap:10px;
-  }
-  .trust-item b{color:var(--paper); font-weight:600;}
+/* Photos */
+.ph{width:100%;height:100%;object-fit:cover;display:block}
+.zoom{position:relative;width:100%;height:100%;overflow:hidden;background:#15170f}
+.zoom img{width:100%;height:100%;object-fit:cover;transform-origin:50% 50%}
+/* sharp crop in front of a blurred copy (used for the single-photo product) */
+.gv{position:absolute;inset:0;overflow:hidden}
+.gbg{position:absolute;inset:-30px;background-size:cover;background-position:center;filter:blur(26px) brightness(.85) saturate(1.1)}
+.gfg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background-repeat:no-repeat}
+.thumb .gbg{inset:-10px;filter:blur(10px) brightness(.85)}
 
-  /* SECTION HEADERS */
-  .section{padding:108px 0;}
-  .section.tight{padding:88px 0;}
-  .eyebrow{
-    display:flex; align-items:center; gap:10px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:12.5px; letter-spacing:0.12em; text-transform:uppercase;
-    color:var(--rust); font-weight:700;
-    margin-bottom:18px;
-  }
-  .eyebrow::before{content:'';width:22px;height:2px;background:var(--rust);}
-  .section-head{max-width:640px; margin-bottom:56px;}
-  .section-head h2{font-size:clamp(30px,3.6vw,46px); margin-bottom:16px;}
-  .section-head p{font-size:16.5px; color:rgba(36,30,23,0.68); line-height:1.65; font-weight:400;}
-  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+/* Product page */
+.pdp{display:grid;grid-template-columns:1.1fr 1fr;gap:52px;padding-bottom:64px}
+.gallery-main{position:relative;aspect-ratio:1/1;background:#15170f;overflow:hidden;border:1px solid var(--line)}
+.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
+.thumb{position:relative;aspect-ratio:1/1;border:1px solid var(--line);background:#15170f;overflow:hidden;padding:0}
+.thumb.on{border-color:var(--olive);box-shadow:0 0 0 2px var(--olive)}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--olive);font-weight:600;margin-bottom:10px}
+h1,h2,h3{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:1.02;letter-spacing:.02em}
+.pdp h1{font-size:60px;margin-bottom:8px}
+.price{font-size:22px;font-weight:600;color:var(--olive);margin-bottom:16px}
+.price span{font-size:15px;color:var(--muted);font-weight:400}
+.desc{color:var(--muted);margin-bottom:24px;max-width:480px}
+.opt-label{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin-bottom:10px;display:flex;gap:10px;align-items:baseline}
+.opt-label b{color:var(--olive);font-weight:600;letter-spacing:.04em;text-transform:none;font-size:14px}
+.swatches{display:flex;gap:12px;margin-bottom:22px}
+.sw{width:40px;height:40px;border-radius:50%;border:1px solid rgba(0,0,0,.22);display:block}
+.sw.on{outline:2px solid var(--olive);outline-offset:3px}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.chip{padding:11px 20px;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.chip:hover{border-color:var(--olive)}
+.chip.on{border-color:var(--olive);background:var(--olive-soft);color:var(--olive-dark)}
+.buy-row{display:flex;gap:14px;margin:6px 0 16px}
+.qty{display:flex;border:1px solid var(--line);background:#fff}
+.qty button{width:42px;background:none;border:0;font-size:18px}
+.qty span{width:36px;text-align:center;align-self:center;font-weight:600}
+.buy-row .btn{flex:1}
+.perks{font-size:13px;color:var(--muted);display:grid;gap:6px;margin:18px 0 24px}
+details{border-top:1px solid var(--line);padding:16px 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+details p{margin-top:10px;color:var(--muted);font-size:15px}
 
-  /* PRODUCTS */
-  .products-grid{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:28px;
-  }
-  .product-card{
-    background:var(--pine);
-    border-radius:4px;
-    overflow:hidden;
-    color:var(--paper);
-    display:flex; flex-direction:column;
-    position:relative;
-  }
-  .product-card .tag{
-    position:absolute; top:18px; left:18px; z-index:3;
-    background:var(--rust); color:var(--paper);
-    font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700;
-    letter-spacing:0.06em; text-transform:uppercase;
-    padding:5px 10px; border-radius:2px;
-  }
-  .product-media{
-    position:relative; height:230px; overflow:hidden;
-    background:var(--pine-deep);
-  }
-  .product-media img{width:100%;height:100%;object-fit:cover; opacity:0.82; transition:transform .5s;}
-  .product-card:hover .product-media img{transform:scale(1.06);}
-  .product-media::after{
-    content:''; position:absolute; inset:0;
-    background:linear-gradient(180deg, transparent 40%, rgba(14,33,29,0.85) 100%);
-  }
-  .product-body{padding:26px 26px 30px;}
-  .product-body h3{font-size:22px; margin-bottom:8px; color:var(--paper);}
-  .product-body p{font-size:14.5px; color:rgba(246,241,228,0.66); line-height:1.6; margin-bottom:20px;}
-  .product-specs{
-    display:flex; gap:16px; margin-bottom:22px; flex-wrap:wrap;
-  }
-  .product-specs span{
-    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.04em;
-    color:var(--gold); text-transform:uppercase;
-    border:1px solid rgba(201,154,61,0.35); padding:5px 9px; border-radius:2px;
-  }
-  .product-foot{
-    display:flex; align-items:center; justify-content:space-between;
-    border-top:1px solid rgba(246,241,228,0.12);
-    padding-top:18px;
-  }
-  .product-foot .price{font-family:'Oswald',sans-serif; font-size:19px; font-weight:600;}
-  .product-foot a{
-    font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600;
-    color:var(--rust-bright); border-bottom:1px solid var(--rust-bright); padding-bottom:2px;
-  }
+/* Videos */
+.videos{border-top:1px solid var(--line);padding:64px 0 40px;text-align:center}
+.rule{width:56px;height:3px;background:var(--olive);margin:0 auto 18px}
+.videos h2{font-size:46px}
+.videos .sub{color:var(--muted);font-size:17px;margin:6px 0 34px;letter-spacing:.04em}
+.vrow{display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.vcol{width:min(340px,100%)}
+.vlabel{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.vframe{position:relative;width:100%;height:740px;background:#10120c;overflow:hidden;border-radius:14px}
+.vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ph-video{position:absolute;inset:0;display:grid;place-items:center;color:#ece7da;text-align:center;padding:24px;
+  background:
+   radial-gradient(circle at 30% 30%,rgba(86,99,58,.45),transparent 55%),
+   repeating-radial-gradient(circle at 70% 60%,rgba(236,231,218,.07) 0 2px,transparent 2px 22px),#10120c}
+.ph-video .play{width:78px;height:78px;border-radius:50%;background:var(--olive);display:grid;place-items:center;margin:0 auto 16px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.ph-video .play:after{content:"";border-left:22px solid #fff;border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:6px}
+.ph-video p{font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
 
-  /* PACK TAGS */
-  .packs{background:var(--stone);}
-  .pack-row{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:26px;
-  }
-  .pack-tag{
-    background:var(--paper);
-    border:1px solid var(--line);
-    border-radius:3px;
-    padding:30px 26px;
-    position:relative;
-    transition:border-color .2s, transform .2s;
-  }
-  .pack-tag.featured{
-    background:var(--charcoal); color:var(--paper); border-color:var(--charcoal);
-    transform:translateY(-10px);
-  }
-  .pack-tag::before{
-    content:'';
-    position:absolute; top:24px; right:24px;
-    width:12px; height:12px; border:2px solid var(--rust);
-    border-radius:50%;
-  }
-  .pack-tag.featured::before{border-color:var(--gold);}
-  .pack-label{
-    font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.1em;
-    text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:14px;
-  }
-  .pack-tag.featured .pack-label{color:var(--gold);}
-  .pack-tag h3{font-size:38px; margin-bottom:6px;}
-  .pack-tag .pack-desc{font-size:13.5px; opacity:0.65; margin-bottom:24px; line-height:1.5;}
-  .pack-tag .pack-price{font-family:'Oswald',sans-serif; font-size:22px; font-weight:600; margin-bottom:4px;}
-  .pack-tag .pack-unit{font-size:12px; opacity:0.55; margin-bottom:22px;}
-  .pack-perks{list-style:none; margin-bottom:26px;}
-  .pack-perks li{
-    font-size:13.5px; padding:7px 0; border-top:1px solid var(--line);
-    display:flex; gap:9px; align-items:flex-start;
-  }
-  .pack-tag.featured .pack-perks li{border-top-color:rgba(246,241,228,0.14);}
-  .pack-perks li:first-child{border-top:none;}
-  .pack-perks li::before{content:'—'; color:var(--rust); font-weight:700; flex-shrink:0;}
-  .pack-tag.featured .pack-perks li::before{color:var(--gold);}
-  .pack-btn{
-    display:block; text-align:center;
-    border:1px solid var(--charcoal); color:var(--charcoal);
-    padding:13px; border-radius:2px;
-    font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; font-size:13px;
-  }
-  .pack-tag.featured .pack-btn{background:var(--rust); border-color:var(--rust); color:var(--paper);}
+/* Limited offer */
+.offer{display:flex;align-items:center;gap:22px;max-width:720px;margin:28px auto 0;padding:18px 22px;background:#fff;border:1px solid var(--line);text-align:left;transition:.25s}
+.offer:hover{box-shadow:0 14px 30px rgba(23,26,18,.12)}
+.offer img{width:84px;height:112px;object-fit:cover;object-position:center 55%;flex:none;border:1px solid var(--line);background:#f1ede4}
+.offer .tag{display:inline-block;background:var(--ink);color:var(--bone);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:4px 10px;margin-bottom:8px}
+.offer p{font-size:17px;line-height:1.35;margin-bottom:8px}
+.offer .more{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--olive)}
 
-  /* RESUPPLY / SUBSCRIPTION */
-  .resupply{
-    background:var(--pine-deep);
-    color:var(--paper);
-    position:relative; overflow:hidden;
-  }
-  .resupply-grid{
-    display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:center;
-  }
-  .resupply-copy .eyebrow{color:var(--gold);}
-  .resupply-copy .eyebrow::before{background:var(--gold);}
-  .resupply-copy h2{font-size:clamp(30px,3.4vw,42px); margin-bottom:18px; color:var(--paper);}
-  .resupply-copy p{color:rgba(246,241,228,0.68); font-size:16px; line-height:1.7; margin-bottom:30px; max-width:480px;}
-  .resupply-stats{display:flex; gap:40px; margin-bottom:34px;}
-  .resupply-stats div b{
-    display:block; font-family:'Oswald',sans-serif; font-size:30px; font-weight:600; color:var(--gold);
-  }
-  .resupply-stats div span{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:rgba(246,241,228,0.55);}
-  .resupply-card{
-    background:rgba(246,241,228,0.05);
-    border:1px solid rgba(246,241,228,0.14);
-    border-radius:4px; padding:36px;
-  }
-  .resupply-card .freq{
-    display:flex; gap:10px; margin-bottom:26px;
-  }
-  .freq-opt{
-    flex:1; text-align:center; padding:10px 6px;
-    border:1px solid rgba(246,241,228,0.2); border-radius:2px;
-    font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.04em; text-transform:uppercase;
-    color:rgba(246,241,228,0.6);
-  }
-  .freq-opt.active{background:var(--rust); border-color:var(--rust); color:var(--paper); font-weight:700;}
-  .resupply-card .line-item{
-    display:flex; justify-content:space-between; padding:12px 0;
-    border-top:1px solid rgba(246,241,228,0.1); font-size:14px;
-  }
-  .resupply-card .line-item:first-of-type{border-top:none;}
-  .resupply-card .save{color:var(--gold); font-weight:600;}
-  .resupply-card .pack-btn{margin-top:22px; border-color:rgba(246,241,228,0.5); color:var(--paper);}
-  .resupply-card .pack-btn:hover{background:rgba(246,241,228,0.08);}
+/* You might also like */
+.recs{padding:56px 0 84px}
+.recs-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:26px;gap:16px}
+.recs-head h2{font-size:42px}
+.arrows{display:flex;gap:10px}
+.arrows button{width:46px;height:46px;border-radius:50%;border:1px solid var(--ink);background:transparent;font-size:22px;line-height:1;color:var(--ink)}
+.arrows button:hover{background:var(--ink);color:var(--bone)}
+.arrows button:disabled{opacity:.3;pointer-events:none}
+.arrows.hide{display:none}
+.rail{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.rail::-webkit-scrollbar{display:none}
+.rec{flex:0 0 calc((100% - 48px)/3);scroll-snap-align:start;background:#fff;border:1px solid var(--line);display:block;transition:.25s;position:relative}
+.rec:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(23,26,18,.14)}
+.rec-img{aspect-ratio:1/1;overflow:hidden;background:#15170f}
+.rec-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.rec:hover .rec-img img{transform:scale(1.04)}
+.rec-body{padding:18px 20px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.rec-body h3{font-size:28px}
+.rec-body .p{font-size:14px;color:var(--olive);font-weight:600}
+.rec-body .p span{color:var(--muted);font-weight:400}
+.rec-dot{width:26px;height:26px;border-radius:50%;border:1px solid rgba(0,0,0,.25);flex:none}
+.viewing{position:absolute;top:14px;left:14px;background:var(--ink);color:var(--bone);font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:5px 10px;z-index:2;font-weight:600}
 
-  /* TECH / WHY */
-  .tech-grid{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
-  }
-  .tech-item{background:var(--paper); padding:34px 26px;}
-  .tech-item .num{font-family:'JetBrains Mono',monospace; color:var(--rust); font-size:12px; font-weight:700; margin-bottom:16px;}
-  .tech-item h3{font-size:17px; margin-bottom:10px; letter-spacing:0.01em;}
-  .tech-item p{font-size:13.5px; color:rgba(36,30,23,0.62); line-height:1.6;}
+/* Footer */
+footer{background:var(--ink);color:#d9d6c8;padding:48px 0 28px;font-size:14px}
+.foot-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:32px}
+.foot-brand .brand-img{height:68px;filter:brightness(0) invert(1)}
+.foot-brand .wm-text{color:#fff}
+footer a{display:block;margin-bottom:8px;opacity:.8}
+footer a:hover{opacity:1}
+.legal{border-top:1px solid rgba(255,255,255,.14);padding-top:20px;font-size:12px;opacity:.65;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
-  /* ANATOMY / SPEC SHEET */
-  .anatomy{
-    position:relative;
-    background:#0B0B0C;
-    color:#EDEAE4;
-    padding:100px 0 76px;
-    overflow:hidden;
-  }
-  .anatomy-bg{
-    position:absolute; inset:0; z-index:0;
-  }
-  .anatomy-bg img{
-    width:100%; height:100%; object-fit:cover; opacity:0.5;
-  }
-  .anatomy-bg::after{
-    content:''; position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(11,11,12,0.55) 0%, rgba(11,11,12,0.88) 55%, #0B0B0C 100%);
-  }
-  .anatomy > .wrap{position:relative; z-index:2;}
-  .anatomy-top{
-    display:flex; align-items:flex-end; justify-content:space-between;
-    margin-bottom:64px; flex-wrap:wrap; gap:20px;
-  }
-  .anatomy-top .eyebrow{color:var(--spec-orange);}
-  .anatomy-top .eyebrow::before{background:var(--spec-orange);}
-  .anatomy-top h2{color:#fff; font-size:clamp(30px,3.6vw,46px); max-width:520px;}
-  .anatomy-top p{color:rgba(237,234,228,0.55); font-size:15px; max-width:320px; line-height:1.6;}
-  :root{ --spec-orange:#F0630F; --spec-orange-bright:#FF7C2E; }
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:14px 26px;font-size:14px;transition:.35s;z-index:100;max-width:calc(100% - 32px)}
+.toast.show{transform:translate(-50%,0)}
+.preview-tag{position:fixed;bottom:14px;right:14px;background:rgba(23,26,18,.88);color:#fff;font-size:11px;letter-spacing:.12em;padding:7px 12px;z-index:90;text-transform:uppercase}
 
-  .anatomy-grid{
-    display:grid; grid-template-columns:1fr 1.1fr auto;
-    gap:20px; align-items:center;
-  }
-  .anatomy-col{display:flex; flex-direction:column; gap:38px;}
-  .anatomy-item{display:flex; align-items:flex-start; gap:14px; max-width:250px;}
-  .anatomy-icon{
-    flex-shrink:0; width:44px; height:44px; border-radius:50%;
-    border:1.5px solid rgba(237,234,228,0.3);
-    background:rgba(11,11,12,0.55);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .anatomy-icon svg{width:20px; height:20px; stroke:var(--spec-orange-bright); fill:none; stroke-width:1.6;}
-  .anatomy-copy h4{
-    font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;
-    font-size:13.5px; letter-spacing:0.03em; margin-bottom:6px; color:#fff;
-  }
-  .anatomy-copy p{font-size:12.5px; line-height:1.55; color:rgba(237,234,228,0.6);}
-  .anatomy-leader{flex-shrink:0; width:30px; height:1px; background:rgba(240,99,15,0.55); margin-top:22px;}
-
-  .anatomy-sock{position:relative; display:flex; justify-content:center;}
-  .anatomy-sock img{width:100%; max-width:300px; height:auto; border-radius:6px; filter:drop-shadow(0 30px 40px rgba(0,0,0,0.55));}
-
-  /* floating badges pinned beside the sock */
-  .anatomy-badges{position:relative; width:230px;}
-  .badge{
-    position:absolute;
-    display:flex; align-items:center; gap:10px;
-    max-width:210px;
-  }
-  .badge .anatomy-leader{width:26px; background:rgba(240,99,15,0.55);}
-  .badge-1{top:36%; left:0;}
-  .badge-2{top:56%; left:14px;}
-  .badge-3{top:76%; left:0;}
-
-  .anatomy-strip{
-    margin-top:80px; padding-top:36px;
-    border-top:1px solid rgba(237,234,228,0.14);
-    display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;
-  }
-  .strip-item{display:flex; flex-direction:column; align-items:center; gap:12px; flex:1; min-width:110px;}
-  .strip-item svg{width:26px; height:26px; stroke:rgba(237,234,228,0.75); fill:none; stroke-width:1.5;}
-  .strip-item span{
-    font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
-    color:rgba(237,234,228,0.65); text-align:center; font-weight:500;
-  }
-
-  @media (max-width: 900px){
-    .anatomy-grid{grid-template-columns:1fr; justify-items:center;}
-    .anatomy-col{flex-direction:row; flex-wrap:wrap; gap:24px; justify-content:center;}
-    .anatomy-item{max-width:100%;}
-    .anatomy-sock{order:-1; margin-bottom:8px;}
-    .anatomy-badges{width:100%; max-width:340px; position:static; display:flex; flex-direction:column; gap:20px;}
-    .badge{position:static; max-width:100%;}
-  }
-
-
-  /* TESTIMONIAL STRIP */
-  .field{
-    background:var(--rust);
-    color:var(--paper);
-    padding:70px 0;
-  }
-  .field .wrap{display:grid; grid-template-columns:repeat(3,1fr); gap:40px;}
-  .field-quote p{font-size:15.5px; line-height:1.65; margin-bottom:18px; color:rgba(246,241,228,0.92);}
-  .field-quote .who{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; opacity:0.8;}
-
-  /* WHOLESALE / DISTRIBUTOR STRIP */
-  .wholesale{
-    background:var(--charcoal); color:var(--paper);
-  }
-  .wholesale .wrap{
-    display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;
-    padding-top:70px; padding-bottom:70px;
-  }
-  .wholesale h2{font-size:clamp(26px,3vw,36px); max-width:520px;}
-  .wholesale p{color:rgba(246,241,228,0.6); margin-top:12px; font-size:15px; max-width:480px;}
-  .wholesale-cta{display:flex; gap:14px; flex-wrap:wrap;}
-
-  /* FOOTER */
-  footer{background:var(--pine-deep); color:rgba(246,241,228,0.55); padding:56px 0 28px;}
-  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px;}
-  .foot-grid h4{color:var(--paper); font-size:12.5px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:16px; font-weight:600;}
-  .foot-grid ul{list-style:none;}
-  .foot-grid ul li{margin-bottom:10px; font-size:13.5px;}
-  .foot-grid ul li a:hover{color:var(--paper);}
-  .foot-bottom{
-    border-top:1px solid rgba(246,241,228,0.1); padding-top:24px;
-    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
-    font-size:12px;
-  }
-  .foot-note{max-width:620px; font-size:12px; line-height:1.6; opacity:0.7; margin-top:10px;}
-
-  @media (max-width: 880px){
-    nav ul{display:none;}
-    .products-grid{grid-template-columns:1fr;}
-    .pack-row{grid-template-columns:1fr;}
-    .pack-tag.featured{transform:none;}
-    .resupply-grid{grid-template-columns:1fr;}
-    .tech-grid{grid-template-columns:1fr 1fr;}
-    .field .wrap{grid-template-columns:1fr; gap:30px;}
-    .foot-grid{grid-template-columns:1fr 1fr;}
-  }
+@media(max-width:900px){
+  .pdp{grid-template-columns:1fr;gap:28px}
+  .pdp h1{font-size:46px}
+  .nav nav{display:none}
+  .nav nav.open{display:flex;flex-direction:column;position:absolute;top:var(--nav-h);left:0;right:0;background:var(--bone);padding:20px 24px;border-bottom:1px solid var(--line);gap:16px}
+  .menu-toggle{display:block}
+  :root{--nav-h:68px}
+  .brand-img{height:44px}
+  .wm-text{font-size:23px}
+  .videos h2{font-size:36px}
+  .vrow{gap:36px}
+  .recs-head h2{font-size:34px}
+  .rec{flex-basis:82%}
+  .arrows button{width:40px;height:40px}
+  .thumbs{gap:6px}
+}
+@media(max-width:480px){
+  .brand-img{height:40px}
+  .wm-text{font-size:19px;letter-spacing:.03em}
+  .nav-right,.nav-left{flex:0 0 64px}
+  .cart-link{font-size:11px;gap:6px;letter-spacing:.1em}
+  .cart-link .cart-count{width:20px;height:20px;font-size:11px}
+  .offer{padding:14px;gap:14px}
+  .offer img{width:68px;height:90px}
+  .offer p{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rec,.rec-img img,.toast,.offer{transition:none}
+}
 </style>
 </head>
 <body>
 
+<div class="announce">Free shipping on orders over $50 &nbsp;·&nbsp; Limited-edition drops</div>
 <header>
-  <div class="nav">
-    <a href="#" class="logo">
-      <div class="mark">BG</div>
-      <div class="word">Bear Grylls <span>Socks</span></div>
-    </a>
-    <nav>
-      <ul>
-        <li><a href="#products">The Range</a></li>
-        <li><a href="#packs">Pack Sizes</a></li>
-        <li><a href="#resupply">Resupply Plan</a></li>
-        <li><a href="#wholesale">Wholesale</a></li>
-      </ul>
-    </nav>
-    <a href="#packs" class="nav-cta">Shop Packs</a>
+  <div class="wrap nav">
+    <div class="nav-left">
+      <button class="menu-toggle" id="menuBtn" aria-label="Menu">☰</button>
+      <nav id="mainNav">
+        <a href="#/p/ngu">Home</a>
+        <a href="#recs">Shop All</a>
+        <a href="#videos">Watch</a>
+      </nav>
+    </div>
+    <a href="#/p/ngu" class="brand" id="wordmark"></a>
+    <div class="nav-right">
+      <button class="cart-link" id="cartBtn">Cart <span class="cart-count" id="cartCount">0</span></button>
+    </div>
   </div>
 </header>
 
-<section class="hero">
-  <img src="https://images.unsplash.com/photo-1760715651666-c3e408bfdda7?fm=jpg&q=80&w=2400&auto=format&fit=crop" alt="Hiker with backpack on a mountain trail">
-  <div class="hero-inner wrap">
-    <div class="hero-badge"><span class="dot"></span> Officially Licensed &nbsp;·&nbsp; As Seen On TV</div>
-    <h1>Built for wherever <em>the trail ends.</em></h1>
-    <p class="lead">Performance socks engineered under the Bear Grylls license — tested against cold rivers, dead legs, and third-day blisters, so yours don't have to be.</p>
-    <div class="hero-ctas">
-      <a href="#packs" class="btn-primary">Shop the Range</a>
-      <a href="#resupply" class="btn-ghost">See the Resupply Plan →</a>
-    </div>
-  </div>
-</section>
-
-<div class="trust">
+<main>
   <div class="wrap">
-    <div class="trust-item"><b>Officially Licensed</b> Bear Grylls Brand</div>
-    <div class="trust-item"><b>50,000+</b> Pairs Shipped</div>
-    <div class="trust-item"><b>Free</b> Resupply Shipping</div>
-    <div class="trust-item"><b>4.8/5</b> Field Rating</div>
+    <div id="offerBox"></div>
+    <div class="crumbs" id="crumbs"></div>
+    <section class="pdp" id="pdp"></section>
   </div>
-</div>
 
-<section class="section" id="products">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">The Range</div>
-      <h2>Three socks. One standard: don't quit on you.</h2>
-      <p>Every pair is built and tested to the same expedition brief — no matter which terrain, temperature, or twelve-hour shift it's up against.</p>
-    </div>
-    <div class="products-grid">
+  <section class="videos" id="videos"></section>
 
-      <div class="product-card">
-        <div class="tag">Best Seller</div>
-        <div class="product-media">
-          <img src="https://images.unsplash.com/photo-1733744237781-6eed02c60b8a?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Hiking boots on a rocky trail">
-        </div>
-        <div class="product-body">
-          <h3>The Trailblazer</h3>
-          <p>Merino-blend hiking sock with reinforced heel and toe for multi-day treks and everyday miles.</p>
-          <div class="product-specs">
-            <span>Merino Blend</span>
-            <span>Cushioned Sole</span>
-          </div>
-          <div class="product-foot">
-            <span class="price">£14</span>
-            <a href="#packs">View Packs</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="tag">All-Weather</div>
-        <div class="product-media">
-          <img src="https://images.unsplash.com/photo-1695564395219-86b6fdfa59f7?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Forest trail in wet weather">
-        </div>
-        <div class="product-body">
-          <h3>The Storm Guard</h3>
-          <p>Waterproof-membrane sock built for river crossings, sleet, and anything the forecast gets wrong.</p>
-          <div class="product-specs">
-            <span>Waterproof</span>
-            <span>Windproof</span>
-          </div>
-          <div class="product-foot">
-            <span class="price">£19</span>
-            <a href="#packs">View Packs</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="tag">Everyday</div>
-        <div class="product-media">
-          <img src="https://images.unsplash.com/photo-1641399122809-e3c85958eb67?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Person wearing wool socks">
-        </div>
-        <div class="product-body">
-          <h3>The Basecamp</h3>
-          <p>Off-duty comfort sock for camp, couch, and everywhere in between — same durability, softer hand.</p>
-          <div class="product-specs">
-            <span>Brushed Cotton</span>
-            <span>Everyday Fit</span>
-          </div>
-          <div class="product-foot">
-            <span class="price">£12</span>
-            <a href="#packs">View Packs</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="anatomy">
-  <div class="wrap">
-    <div class="anatomy-top">
-      <div>
-        <div class="eyebrow">Anatomy Of The Sock</div>
-        <h2>Built for the extreme, detail by detail.</h2>
-      </div>
-      <p>Engineered to a technical spec, not just a look — every zone on the sock is doing a specific job.</p>
-    </div>
-
-    <div class="anatomy-grid">
-      <!-- LEFT COLUMN -->
-      <div class="anatomy-col left">
-        <div class="anatomy-item">
-          <div class="anatomy-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 19l6-10 4 6 3-4 5 8H3z" stroke-linejoin="round" stroke-linecap="round"/></svg>
-          </div>
-          <div class="anatomy-copy">
-            <h4>Merino Wool Performance</h4>
-            <p>Temperature-regulating, moisture-wicking and naturally odour-resistant.</p>
-          </div>
-        </div>
-        <div class="anatomy-item">
-          <div class="anatomy-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 8c2 2 4-2 6 0s4-2 6 0 4-2 6 0M3 14c2 2 4-2 6 0s4-2 6 0 4-2 6 0" stroke-linecap="round"/></svg>
-          </div>
-          <div class="anatomy-copy">
-            <h4>Ventilation Zones</h4>
-            <p>Strategic breathability for comfort on long treks and climbs.</p>
-          </div>
-        </div>
-        <div class="anatomy-item">
-          <div class="anatomy-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="anatomy-copy">
-            <h4>Targeted Cushioning</h4>
-            <p>Advanced protection in high-impact zones for all-day comfort.</p>
-          </div>
-        </div>
-        <div class="anatomy-item">
-          <div class="anatomy-icon">
-            <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3.2" stroke-linecap="round"/><circle cx="16" cy="16" r="3.2" stroke-linecap="round"/><path d="M10.3 10.3l3.4 3.4" stroke-linecap="round"/></svg>
-          </div>
-          <div class="anatomy-copy">
-            <h4>Reinforced Durability</h4>
-            <p>Built to withstand rugged terrain, heavy loads and extreme conditions.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- CENTER SOCK IMAGE -->
-      <div class="anatomy-sock">
-        <img src="sock-hero.jpg" alt="Bear Grylls technical performance sock concept">
-      </div>
-
-      <!-- RIGHT: BADGES PINNED BESIDE THE SOCK -->
-      <div class="anatomy-badges">
-        <div class="badge badge-1">
-          <span class="anatomy-leader"></span>
-          <div class="anatomy-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" stroke-linecap="round"/><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" opacity="0.5"/></svg>
-          </div>
-          <div class="anatomy-copy">
-            <h4>Arch Support</h4>
-            <p>Stability where you need it most.</p>
-          </div>
-        </div>
-        <div class="badge badge-2">
-          <span class="anatomy-leader"></span>
-          <div class="anatomy-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 4c3 3 7 7.5 7 12a7 7 0 01-14 0c0-4.5 4-9 7-12z" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="anatomy-copy">
-            <h4>Anti-Blister Design</h4>
-            <p>Seamless fit to reduce friction.</p>
-          </div>
-        </div>
-        <div class="badge badge-3">
-          <span class="anatomy-leader"></span>
-          <div class="anatomy-icon">
-            <svg viewBox="0 0 24 24"><rect x="10" y="4" width="4" height="16" rx="1"/><rect x="4" y="10" width="16" height="4" rx="1"/></svg>
-          </div>
-          <div class="anatomy-copy">
-            <h4>Precision Engineered</h4>
-            <p>Premium materials, peak performance.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="anatomy-strip">
-      <div class="strip-item">
-        <svg viewBox="0 0 24 24"><path d="M12 2v12M9 20a3 3 0 006 0c0-1.5-1-2-1-2V4a2 2 0 00-4 0v14s-1 .5-1 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span>Thermal Regulation</span>
-      </div>
-      <div class="strip-item">
-        <svg viewBox="0 0 24 24"><path d="M12 3c3 4 7 8.5 7 12.5a7 7 0 01-14 0C5 11.5 9 7 12 3z" stroke-linejoin="round"/></svg>
-        <span>Moisture Management</span>
-      </div>
-      <div class="strip-item">
-        <svg viewBox="0 0 24 24"><path d="M4 20c8 0 14-6 14-14V4h-2C8 4 4 10 4 18v2z" stroke-linejoin="round"/></svg>
-        <span>Natural Comfort</span>
-      </div>
-      <div class="strip-item">
-        <svg viewBox="0 0 24 24"><circle cx="8" cy="12" r="5.5" stroke-linecap="round"/><circle cx="16" cy="12" r="5.5" stroke-linecap="round"/></svg>
-        <span>Built To Endure</span>
-      </div>
-      <div class="strip-item">
-        <svg viewBox="0 0 24 24"><path d="M2 19l6-11 4 7 3-5 7 9H2z" stroke-linejoin="round" stroke-linecap="round"/></svg>
-        <span>Tested In The Wild</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section packs" id="packs">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow" style="justify-content:center;">Pack Sizes</div>
-      <h2>Stock the drawer, not just the trip.</h2>
-      <p>Mix and match across the range. Bigger packs, bigger margin on cost-per-pair — built for households and expedition kits alike.</p>
-    </div>
-    <div class="pack-row">
-
-      <div class="pack-tag">
-        <div class="pack-label">Trail Pack</div>
-        <h3>2-Pack</h3>
-        <div class="pack-desc">Try the range or top up a favourite pair.</div>
-        <div class="pack-price">£24</div>
-        <div class="pack-unit">£12.00 / pair</div>
-        <ul class="pack-perks">
-          <li>Any 2 styles, mix or match</li>
-          <li>Free standard shipping</li>
-          <li>30-day fit guarantee</li>
-        </ul>
-        <a href="#" class="pack-btn">Add to Cart</a>
-      </div>
-
-      <div class="pack-tag featured">
-        <div class="pack-label">Expedition Pack</div>
-        <h3>4-Pack</h3>
-        <div class="pack-desc">The most-picked size — one for every day worn hard.</div>
-        <div class="pack-price">£42</div>
-        <div class="pack-unit">£10.50 / pair · save 12%</div>
-        <ul class="pack-perks">
-          <li>Any 4 styles, mix or match</li>
-          <li>Free priority shipping</li>
-          <li>30-day fit guarantee</li>
-          <li>Exclusive expedition colourway</li>
-        </ul>
-        <a href="#" class="pack-btn">Add to Cart</a>
-      </div>
-
-      <div class="pack-tag">
-        <div class="pack-label">Basecamp Case</div>
-        <h3>12-Pack</h3>
-        <div class="pack-desc">A full season, sorted. Built for gifting and bulk restock.</div>
-        <div class="pack-price">£108</div>
-        <div class="pack-unit">£9.00 / pair · save 25%</div>
-        <ul class="pack-perks">
-          <li>Any 12 styles, mix or match</li>
-          <li>Free priority shipping</li>
-          <li>30-day fit guarantee</li>
-          <li>Gift-ready gear box</li>
-        </ul>
-        <a href="#" class="pack-btn">Add to Cart</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="resupply topo" id="resupply">
-  <div class="wrap section">
-    <div class="resupply-grid">
-      <div class="resupply-copy">
-        <div class="eyebrow">Resupply Plan</div>
-        <h2>Never dig through the drawer for a matching pair again.</h2>
-        <p>Subscribe once. We resupply your kit on a schedule you set — with first pick of new colourways and a standing discount on every drop.</p>
-        <div class="resupply-stats">
-          <div><b>20%</b><span>Off every order</span></div>
-          <div><b>Free</b><span>Shipping, always</span></div>
-          <div><b>Skip</b><span>Or cancel anytime</span></div>
-        </div>
-        <a href="#" class="btn-primary">Start the Resupply Plan</a>
-      </div>
-      <div class="resupply-card">
-        <div class="freq">
-          <div class="freq-opt">Monthly</div>
-          <div class="freq-opt active">Quarterly</div>
-          <div class="freq-opt">Bi-Annual</div>
-        </div>
-        <div class="line-item"><span>4-Pack · Mixed Range</span><span>£42.00</span></div>
-        <div class="line-item"><span>Subscriber discount</span><span class="save">−£8.40</span></div>
-        <div class="line-item"><span>Shipping</span><span class="save">Free</span></div>
-        <div class="line-item" style="font-weight:700; border-top:1px solid rgba(246,241,228,0.2); margin-top:6px; padding-top:16px;"><span>Billed quarterly</span><span>£33.60</span></div>
-        <a href="#" class="pack-btn">Set Up Resupply</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="field">
-  <div class="wrap">
-    <div class="field-quote">
-      <p>"Ordered the 12-pack before a Kilimanjaro trip. Only pair I didn't have to think about once I was up there."</p>
-      <div class="who">— J. Abara, Verified Buyer</div>
-    </div>
-    <div class="field-quote">
-      <p>"The Storm Guard pair got me through a river crossing in Snowdonia and my feet were genuinely dry after. Wasn't expecting that."</p>
-      <div class="who">— R. Doyle, Verified Buyer</div>
-    </div>
-    <div class="field-quote">
-      <p>"Switched the whole family onto the Resupply Plan. Fewer odd socks in the wash, which is honestly the real win."</p>
-      <div class="who">— M. Okafor, Verified Buyer</div>
-    </div>
-  </div>
-</section>
-
-<section class="wholesale" id="wholesale">
-  <div class="wrap">
-    <div>
-      <h2>Built for retail. Ready for wholesale.</h2>
-      <p>Licensed product, proven demand, and pack architecture designed for shelf and case-pack economics. Distributor decks and sample kits available on request.</p>
-    </div>
-    <div class="wholesale-cta">
-      <a href="#" class="btn-primary">Request Distributor Pack</a>
-      <a href="#" class="btn-ghost">Download Line Sheet →</a>
-    </div>
-  </div>
-</section>
+  <section class="recs" id="recs"></section>
+</main>
 
 <footer>
   <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="logo" style="margin-bottom:14px;">
-          <div class="mark">BG</div>
-          <div class="word">Bear Grylls <span>Socks</span></div>
-        </div>
-        <p style="font-size:13px; line-height:1.6; max-width:280px;">Officially licensed performance footwear, built to the same standard as everything else Bear Grylls puts his name to.</p>
-      </div>
-      <div>
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="#products">The Range</a></li>
-          <li><a href="#packs">Pack Sizes</a></li>
-          <li><a href="#resupply">Resupply Plan</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Business</h4>
-        <ul>
-          <li><a href="#wholesale">Wholesale</a></li>
-          <li><a href="#">Distributors</a></li>
-          <li><a href="#">Press Kit</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#">About the License</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Shipping & Returns</a></li>
-        </ul>
-      </div>
+    <div class="foot-top">
+      <div class="foot-brand" id="footMark"></div>
+      <div><a href="#/p/ngu">Shop</a><a href="#videos">Watch</a><a href="#recs">You might also like</a></div>
+      <div><a href="#/p/ngu">Shipping</a><a href="#/p/ngu">Returns</a><a href="#/p/ngu">Size guide</a></div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 Bear Grylls Socks. All rights reserved.</span>
-      <span>beargryllssocks.com — domain TBD</span>
-    </div>
-    <p class="foot-note">Concept mockup for pitch purposes only. Product photography, licensed imagery, and final branding to be supplied under the executed licensing agreement.</p>
+    <div class="legal"><span id="legalName"></span><span>Preview mockup, not a live store</span></div>
   </div>
 </footer>
 
+<div class="toast" id="toast" role="status"></div>
+<div class="preview-tag">Preview mockup</div>
+
+<script>
+/* =====================================================================
+   EDIT THIS BLOCK
+   ---------------------------------------------------------------------
+   Logo:   images/modern-savage-logo.png (transparent PNG; shown in white in the footer)
+   Photos: images/savage-{white|olive|black}-{overview|contour|line|summit}.jpg  (12 files)
+           images/never-give-up.jpg  (the Never Give Up 2-pack with packaging)
+   (the 12 Modern Savage photos fall back to hosted versions if a file is missing)
+   Videos: paste normal share links. Leave '' to show a placeholder. The YouTube video autoplays (muted) when it scrolls into view.
+   ===================================================================== */
+const PARTNER = {
+  name: 'Modern Savage',
+  logo: 'images/modern-savage-logo.png',
+  tag: 'Crew socks',
+  videoTitle: 'Watch Modern Savage',
+  videoSub: 'Behind the brand.'
+};
+const VIDEOS = {
+  youtube: 'https://www.youtube.com/shorts/1SqOrfEQnTc',   /* Bear's YouTube Short about Modern Savage + the limited offer */
+  tiktok:  'https://www.tiktok.com/@beargrylls/video/7688720912555756822?lang=en'
+};
+const OFFER = {
+  label: 'Limited offer',
+  text:  'Order Modern Savage and receive a 2-pack of Never Give Up Bear Grylls socks.',
+  product: 'ngu',                 /* the gift shown in the card */
+  cta:  'Shop Modern Savage',
+  href: '#/p/white'               /* where the card links to */
+};
+const PRICE = 30, PACK = '2-pair pack', FREE_SHIP = 50;
+
+const CDN = 'https://d8j0ntlcm91z4.cloudfront.net/user_3Dwo2Ee132WGRcmWC238Fi4lMR2/';
+/* hosted fallback files (overview = the three designs together) */
+const HOSTED = {
+  white:{ overview:'hf_20261010_053238_9737e6a2-8b89-49ce-887c-79dbf54a2c4a', contour:'hf_20261010_053239_4b0d3803-b3ce-4644-a1b6-9f7b80741af0', line:'hf_20261010_053238_160255a9-12e4-4232-b70c-527a7421bf2a', summit:'hf_20261010_053238_4bcff7c0-2b29-47c8-b30b-50052bf59891' },
+  olive:{ overview:'hf_20261010_053312_9eeec42b-a400-4438-b578-f4e2cb6ff497', contour:'hf_20261010_053312_e73b1444-45bd-4ea5-ac8d-261b5f107c75', line:'hf_20261010_053311_737e43fa-9b43-4b52-bfdd-e4164a4dc406', summit:'hf_20261010_053312_061e6648-1b3e-43a6-b8ef-26f5549b9cfb' },
+  black:{ overview:'hf_20261010_053333_72750c7b-e232-4774-b9a1-fb220758adae', contour:'hf_20261010_053333_9fa7c4c1-05fb-4a9a-a5ba-60fbfbc5858a', line:'hf_20261010_053333_a8ee932c-cc6a-4184-913d-045b7c45ed3a', summit:'hf_20261010_053333_72676d5e-89bc-4ced-afe3-decdf2d07fe2' }
+};
+/* Never Give Up = the landing product (one photo). Modern Savage = one product per colourway. */
+const PRODUCTS = [
+  { id:'ngu',   name:'Never Give Up', single:true, brand:'Bear Grylls',
+    eyebrow:'Bear Grylls · Performance hiking socks',
+    src:'images/never-give-up.jpg', W:853, H:1280, bg:'#faf3ee' },
+  { id:'white', name:'Bone White',  hex:'#f4f1ea' },
+  { id:'olive', name:'Field Olive', hex:'#56633a' },
+  { id:'black', name:'Night Black', hex:'#151515' }
+];
+PRODUCTS.forEach(p => {
+  if(p.single) return;
+  p.imgs = {};
+  ['overview','contour','line','summit'].forEach(k => {
+    p.imgs[k] = { local:`images/savage-${p.id}-${k}.jpg`, url:CDN + HOSTED[p.id][k] + '.png' };
+  });
+});
+/* gallery views for the single-photo product, as fractions of the photo [x, y, width, height] */
+const SINGLE_VIEWS  = [[0,0,1,1], [.04,.13,.41,.69], [.31,.24,.65,.66], [.46,.31,.44,.24], [.42,.62,.43,.18]];
+const SINGLE_LABELS = ['Overview','Packaging','The socks','Print close-up','Heel detail'];
+const DESIGNS = [
+  { id:'contour', name:'Contour' },   /* topographic lines */
+  { id:'line',    name:'Line' },      /* vertical stripe */
+  { id:'summit',  name:'Summit' }     /* peaks and pines */
+];
+const SIZES = ['S/M (5–7.5)','M/L (8–10)'];
+const DESC_SINGLE = 'Cushioned ribbed crews with bold graphics, made for the trail and the street.';
+const DESC = DESC_SINGLE + ' Pick your colour, then your design: Contour, Line or Summit.';
+const CLOSE = { s:2, cx:.5, cy:.3 };   /* close-up zoom for the colourway photos: scale and centre point */
+
+/* =====================================================================
+   HELPERS
+   ===================================================================== */
+const $ = s => document.querySelector(s);
+const find = id => PRODUCTS.find(p => p.id === id) || PRODUCTS[0];
+const money = n => '$' + n.toFixed(2);
+const FB = i => `onerror="this.onerror=null;this.src='${i.url}'"`;
+const photo = (p, key, cls, alt) => { const i = p.imgs[key]; return `<img class="${cls||''}" src="${i.local}" ${FB(i)} alt="${alt||''}">`; };
+function zoomed(p, key, alt){
+  const i = p.imgs[key];
+  const t = `scale(${CLOSE.s}) translate(${((.5-CLOSE.cx)*100).toFixed(1)}%,${((.5-CLOSE.cy)*100).toFixed(1)}%)`;
+  return `<div class="zoom"><img src="${i.local}" ${FB(i)} style="transform:${t}" alt="${alt||''}"></div>`;
+}
+/* show one region f = [x,y,w,h] (fractions) of the single photo, sharp in front of a blurred copy */
+function crop(p, f){
+  const x = f[0]*p.W, y = f[1]*p.H, w = f[2]*p.W, h = f[3]*p.H;
+  const bs = (p.W / w * 100).toFixed(3) + '%';
+  const bx = f[2] >= 1 ? 0 : (x / (p.W - w) * 100).toFixed(3);
+  const by = f[3] >= 1 ? 0 : (y / (p.H - h) * 100).toFixed(3);
+  const dim = (w / h) >= 1 ? 'width:100%' : 'height:100%';
+  return `<div class="gv" role="img" aria-label="${p.name} socks"><div class="gbg" style="${p.bg ? 'inset:0;filter:none;background:' + p.bg : `background-image:url('${p.src}')`}"></div>
+    <div class="gfg" style="${dim};aspect-ratio:${w.toFixed(1)} / ${h.toFixed(1)};background-image:url('${p.src}');background-size:${bs} auto;background-position:${bx}% ${by}%"></div></div>`;
+}
+/* gallery views: colourways = 0 overview, 1-3 the three designs, 4 close-up of the chosen design */
+function viewHTML(p, i){
+  if(p.single) return crop(p, SINGLE_VIEWS[i]);
+  if(i === 0) return photo(p, 'overview', 'ph', `${p.name} socks, all three designs`);
+  if(i <= 3)  return photo(p, DESIGNS[i-1].id, 'ph', `${p.name} socks, ${DESIGNS[i-1].name} design`);
+  return zoomed(p, DESIGNS[design].id, `${p.name} ${DESIGNS[design].name} close-up`);
+}
+
+/* =====================================================================
+   STATE
+   ===================================================================== */
+let cur = PRODUCTS[0], design = 0, size = 0, qty = 1, view = 0, cartN = 0;
+
+/* =====================================================================
+   PRODUCT PAGE
+   ===================================================================== */
+function renderPDP(){
+  const p = cur, S = !!p.single;
+  document.title = `${p.name} | ${S ? p.brand : PARTNER.name} Socks`;
+  $('#crumbs').innerHTML = `<a href="#/p/ngu">Home</a> / <a href="#recs">Shop All</a> / ${p.name}`;
+  const options = S ? '' : `
+      <div class="opt-label">Colour <b>${p.name}</b></div>
+      <div class="swatches">${PRODUCTS.filter(x=>!x.single).map(x=>`<a class="sw ${x.id===p.id?'on':''}" href="#/p/${x.id}" style="background:${x.hex}" title="${x.name}" aria-label="${x.name}"></a>`).join('')}</div>
+
+      <div class="opt-label">Design <b id="designName">${DESIGNS[design].name}</b></div>
+      <div class="chips" id="designChips">${DESIGNS.map((d,i)=>`<button class="chip ${i===design?'on':''}" aria-pressed="${i===design}" onclick="pickDesign(${i})">${d.name}</button>`).join('')}</div>
+`;
+  $('#pdp').innerHTML = `
+    <div>
+      <div class="gallery-main" id="gMain"></div>
+      <div class="thumbs" id="gThumbs"></div>
+    </div>
+    <div>
+      <div class="eyebrow">${S ? p.eyebrow : PARTNER.tag + ' · Limited edition'}</div>
+      <h1>${p.name}</h1>
+      <div class="price">${money(PRICE)} <span>· ${PACK}</span></div>
+      <p class="desc">${S ? DESC_SINGLE : DESC}</p>
+      ${options}
+      <div class="opt-label">Size</div>
+      <div class="chips" id="sizeChips">${SIZES.map((s,i)=>`<button class="chip ${i===size?'on':''}" aria-pressed="${i===size}" onclick="pickSize(${i})">${s}</button>`).join('')}</div>
+
+      <div class="buy-row">
+        <div class="qty"><button onclick="chQty(-1)" aria-label="Decrease">−</button><span id="qtyV">${qty}</span><button onclick="chQty(1)" aria-label="Increase">+</button></div>
+        <button class="btn" onclick="addToCart()">Add to cart</button>
+      </div>
+      <div class="perks"><span>♦ Free shipping over $${FREE_SHIP}</span><span>♦ Easy 30-day returns</span><span>♦ Limited run, once it's gone it's gone</span></div>
+      <details open><summary>Details</summary><p>Soft wool blend with moisture management, cushioned foot, arch support and reinforced heel and toe, built for all-day comfort and durability.</p></details>
+      <details><summary>Size &amp; fit</summary><p>S/M fits US 5–7.5. M/L fits US 8–10.</p></details>
+    </div>`;
+  renderGallery();
+}
+function renderGallery(){
+  const p = cur;
+  const labels = p.single ? SINGLE_LABELS : ['Overview','Design: '+DESIGNS[0].name,'Design: '+DESIGNS[1].name,'Design: '+DESIGNS[2].name,'Close-up'];
+  $('#gMain').innerHTML = viewHTML(p, view);
+  $('#gThumbs').innerHTML = [0,1,2,3,4].map(i =>
+    `<button class="thumb ${i===view?'on':''}" aria-label="${labels[i]}" onclick="showView(${i})">${viewHTML(p,i)}</button>`).join('');
+}
+function showView(i){
+  view = i;
+  if(!cur.single && i >= 1 && i <= 3){ design = i - 1; syncDesign(); }
+  renderGallery();
+}
+function pickDesign(i){ design = i; view = i + 1; syncDesign(); renderGallery(); }
+function syncDesign(){
+  $('#designName').textContent = DESIGNS[design].name;
+  document.querySelectorAll('#designChips .chip').forEach((el,k)=>{ el.classList.toggle('on',k===design); el.setAttribute('aria-pressed',String(k===design)); });
+}
+function pickSize(i){
+  size = i;
+  document.querySelectorAll('#sizeChips .chip').forEach((el,k)=>{ el.classList.toggle('on',k===i); el.setAttribute('aria-pressed',String(k===i)); });
+}
+function chQty(d){ qty = Math.max(1, qty + d); $('#qtyV').textContent = qty; }
+function addToCart(){
+  cartN += qty; $('#cartCount').textContent = cartN;
+  toast(`Added ${qty} × ${cur.name}${cur.single ? '' : ' · ' + DESIGNS[design].name} · ${SIZES[size]}`);
+}
+
+/* =====================================================================
+   VIDEOS (YouTube + TikTok, both vertical: side by side on laptop, stacked on mobile)
+   ===================================================================== */
+const ytId = u => { const m = (u||'').match(/(?:youtu\.be\/|[?&]v=|shorts\/|embed\/)([\w-]{11})/); return m ? m[1] : null; };
+const ttId = u => { const m = (u||'').match(/video\/(\d+)/); return m ? m[1] : null; };
+const vcol = (label, inner) => `<div class="vcol"><div class="vlabel">${label}</div><div class="vframe">${inner}</div></div>`;
+function renderVideos(){
+  const y = ytId(VIDEOS.youtube), t = ttId(VIDEOS.tiktok);
+  const yt = y
+    ? `<iframe id="ytFrame" data-vid="${y}" title="${PARTNER.name} on YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+    : `<div class="ph-video"><div><div class="play"></div><p>YouTube video preview</p></div></div>`;
+  const tk = t
+    ? `<iframe src="https://www.tiktok.com/embed/v2/${t}" title="${PARTNER.name} on TikTok" allow="fullscreen" loading="lazy"></iframe>`
+    : `<div class="ph-video"><div><div class="play"></div><p>TikTok video preview</p></div></div>`;
+  $('#videos').innerHTML = `<div class="wrap">
+    <div class="rule"></div>
+    <h2>${PARTNER.videoTitle}</h2>
+    <p class="sub">${PARTNER.videoSub}</p>
+    <div class="vrow">${vcol('On YouTube', yt)}${vcol('On TikTok', tk)}</div>
+  </div>`;
+  initYouTube();
+}
+/* Limited-offer box, shown at the very top of the page, above the product */
+function renderOffer(){
+  const n = find(OFFER.product);
+  $('#offerBox').innerHTML = `<a class="offer" href="${OFFER.href}">
+      <img src="${n.src}" alt="${n.name} 2-pack with packaging">
+      <div><span class="tag">${OFFER.label}</span><p>${OFFER.text}</p><span class="more">${OFFER.cta} →</span></div>
+    </a>`;
+}
+/* YouTube autoplay: starts (muted, looping) when the video scrolls into view, pauses when it leaves.
+   Browsers only allow autoplay with the sound off, so viewers tap the speaker icon to unmute. */
+function initYouTube(){
+  const f = document.getElementById('ytFrame'); if(!f) return;
+  const id = f.dataset.vid;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const post = fn => { if(f.contentWindow) f.contentWindow.postMessage(JSON.stringify({event:'command', func:fn, args:[]}), '*'); };
+  let loaded = false;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        if(!loaded){
+          loaded = true;
+          f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=${reduce ? 0 : 1}&mute=1&loop=1&playlist=${id}&playsinline=1&rel=0&enablejsapi=1`;
+        } else if(!reduce){ post('playVideo'); }
+      } else if(loaded){ post('pauseVideo'); }
+    });
+  }, {threshold:.4});
+  io.observe(f);
+}
+
+/* =====================================================================
+   YOU MIGHT ALSO LIKE (carousel, each card loads this page with that product)
+   ===================================================================== */
+function renderRecs(){
+  $('#recs').innerHTML = `<div class="wrap">
+    <div class="recs-head"><div><div class="eyebrow">More to explore</div><h2>You might also like</h2></div>
+      <div class="arrows" id="arrows"><button id="rPrev" aria-label="Previous">‹</button><button id="rNext" aria-label="Next">›</button></div></div>
+    <div class="rail" id="rail">${PRODUCTS.map(x=>`
+      <a class="rec" href="#/p/${x.id}">
+        ${x.id===cur.id?'<span class="viewing">Viewing</span>':''}
+        <div class="rec-img">${x.single
+          ? `<img src="${x.src}" style="object-position:center 55%" alt="${x.name} 2-pack with packaging" loading="lazy">`
+          : photo(x,'overview','',`${x.name} socks, three designs`)}</div>
+        <div class="rec-body"><div><h3>${x.name}</h3><div class="p">${money(PRICE)} <span>· ${PACK}</span></div></div>${x.hex ? `<span class="rec-dot" style="background:${x.hex}"></span>` : ''}</div>
+      </a>`).join('')}</div>
+  </div>`;
+  const rail = $('#rail'), prev = $('#rPrev'), next = $('#rNext'), box = $('#arrows');
+  const upd = () => {
+    const over = rail.scrollWidth > rail.clientWidth + 4;
+    box.classList.toggle('hide', !over);
+    prev.disabled = rail.scrollLeft <= 4;
+    next.disabled = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 4;
+  };
+  const step = () => (rail.querySelector('.rec').offsetWidth + 24);
+  prev.onclick = () => rail.scrollBy({left:-step(), behavior:'smooth'});
+  next.onclick = () => rail.scrollBy({left: step(), behavior:'smooth'});
+  rail.addEventListener('scroll', upd, {passive:true});
+  if(window.__recsResize) window.removeEventListener('resize', window.__recsResize);
+  window.__recsResize = upd;
+  window.addEventListener('resize', upd);
+  upd();
+}
+
+/* =====================================================================
+   TOAST + ROUTER
+   ===================================================================== */
+let tt;
+function toast(msg){
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(tt); tt = setTimeout(()=>t.classList.remove('show'), 2800);
+}
+function route(){
+  const m = (location.hash || '').match(/^#\/p\/(\w+)/);
+  if(!m && location.hash && !location.hash.startsWith('#/')) return;   /* in-page anchors (#recs, #videos) */
+  const next = find(m ? m[1] : 'ngu');
+  const changed = next.id !== cur.id;
+  cur = next;
+  if(changed){ view = next.single ? 0 : design + 1; }
+  renderPDP(); renderRecs();
+  $('#mainNav').classList.remove('open');
+  if(m) window.scrollTo({top:0});
+}
+function init(){
+  const mark = PARTNER.name.toUpperCase();
+  const logo = `<img class="brand-img" src="${PARTNER.logo}" alt="${PARTNER.name}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'wm-text',textContent:'${mark}'}))">`;
+  $('#wordmark').innerHTML = logo;
+  $('#wordmark').setAttribute('aria-label', PARTNER.name + ' home');
+  $('#footMark').innerHTML = logo;
+  $('#legalName').textContent = `© 2026 ${PARTNER.name}.`;
+  $('#menuBtn').onclick = () => $('#mainNav').classList.toggle('open');
+  $('#cartBtn').onclick = () => toast('Preview only. Shopify cart goes here');
+  window.addEventListener('hashchange', route);
+  renderOffer();
+  renderVideos();
+  route();
+}
+init();
+</script>
 </body>
 </html>
